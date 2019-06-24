@@ -1,0 +1,27 @@
+{
+  "name": "Petster",
+  "version": "1.0.0",
+  "description": "The most awesomest pet app out there. Find your true 1/4 of a life companion!",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CareyEG/Petster.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CareyEG/Petster/issues"
+  },
+  "homepage": "https://github.com/CareyEG/Petster#readme",
+  "dependencies": {
+    "dotenv": "^8.0.0",
+    "express": "^4.17.1",
+    "pg": "^7.11.0",
+    "superagent": "^5.1.0"
+  }
+}
