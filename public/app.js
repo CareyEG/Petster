@@ -2,7 +2,7 @@ $('#btnDetails').on('click', function(){
 
   console.log('you clicked!')
   
-  $('#view-details').show();
+  $('.view-details').show();
 });
 
 let count = 0;
