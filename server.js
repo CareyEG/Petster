@@ -9,6 +9,11 @@ const methodOverride = require('method-override');
 // Environment variables
 require('dotenv').config();
 
+// Database set up
+const client = new pg.Client(process.env.DATABASE_URL)
+client.connect();
+client.on('err', err => console.error(err));
+
 // Application Setup
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -25,8 +30,6 @@ app.use(methodOverride((request, response) => {
     return method;
   }
 }));
-
-// TODO: Add Database Setup
 
 // Set the view engine for server-side templating
 app.set('view engine', 'ejs');
@@ -62,15 +65,27 @@ function renderSearchPage(request, response) {
 }
 
 function Pet(query){
+  this.search_query = query;
+  this.type = query.type;
   this.name = query.name;
-  // console.log('query name', query.name)
+  this.age = query.age;
+  this.gender = query.gender;
+  this.size = query.size;
+  this.city = query.contact.address.city;
+  this.state = query.contact.address.state;
   this.description = query.description;
-  // console.log('query description', query.description)
+  this.description = query.description;
   this.type = query.type;
   this.photo = query.photos.length ? query.photos[0].large : 'placecage.com/200/200';
-  // console.log(this.photo);
 }
 
+function saveFavorite(petData){
+
+  console.log('!!!!!!! cacheSavedPetData query log ', petData);
+
+  // const insertSQL = `INSERT INTO favorites (type, name, age, gender, size, city, state, description, image_url) VALUES('${}','${}', ${}, ${}, '${}','${}', ${}, ${}, ${})RETURNING id;`;
+
+}
 
 function renderFavoritesPage(request, response) {
   let URL = 'https://api.petfinder.com/v2/animals'
