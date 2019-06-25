@@ -1,40 +1,37 @@
 <%- include('../layout/head') %>
 <body>
-  
+  <h1>Welcome to petster!</h1>
+  <%- include('../layout/nav') %>
 
-<h1>Welcome to petster!</h1>
-<%- include('../layout/nav') %>
+  <h2>Fill out the info for your perfect pet below</h2>
+    <main>
+      <div class="dropdown">
+        <button class="dropbtn">Pet Type</button>
+        <div class="dropdown-content">
+          <a href="#">Dog</a>
+          <a href="#">Cat</a>
+          <a href="#">Bunny</a>
+        </div>
+      </div>
+      <h3>Your Location</h3><br>
+      <input type="text" name="firstname" placeholder="Enter Your City Here">
 
-<h2>Fill out the info for your perfect pet below</h2>
+      <div class="dropdown">
+        <button class="dropbtn">Distance Willing to Travel</button>
+        <div class="dropdown-content">
+          <a href="#">5 miles</a>
+          <a href="#">15 miles</a>
+          <a href="#">25+ miles</a>
+        </div>
+      </div>
 
-  <main>
-        <div class="dropdown">
-                <button class="dropbtn">Pet Type</button>
-                <div class="dropdown-content">
-                  <a href="#">Dog</a>
-                  <a href="#">Cat</a>
-                  <a href="#">Bunny</a>
-                </div>
-              </div>
-    <h3>Your Location</h3><br>
-    <input type="text" name="firstname" placeholder="Enter Your City Here">
+      <form>
+        <h3>User Name</h3>
+        <br>
+        <input type="text" name="firstname" placeholder="Enter Your Username Here">
+      </form>
 
-        <div class="dropdown">
-                <button class="dropbtn">Distance Willing to Travel</button>
-                <div class="dropdown-content">
-                  <a href="#">5 miles</a>
-                  <a href="#">15 miles</a>
-                  <a href="#">25+ miles</a>
-                </div>
-              </div>
-
-              <form>
-                    <h3>User Name</h3>
-                    <br>
-                    <input type="text" name="firstname" placeholder="Enter Your Username Here">
-              </form>
-
-              <button id="submit">Submit</button>
-      </main>
-    </body>
+      <button id="submit" onclick="window.location.href='/search'">Submit</button>
+    </main>
+  </body>
 </html>
