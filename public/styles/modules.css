@@ -154,7 +154,9 @@ select {
 .view-details {
   display: none;
 }
-
+.petDetails {
+  display: none;
+}
 
 /* ////////////FAVORITES PAGE///////////// */
 
