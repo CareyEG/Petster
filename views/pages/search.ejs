@@ -7,13 +7,13 @@
 
 <!-- Display Pets -->
 <% petResultAPI.forEach((item, index) => { %>
-    <ul id="<%=index %>">
+    <ul class="loadPets" id="<%=index %>">
       <img id="heart" src="/img/like.png">
-      <li><img class="pet" src="<%=item.photo%>"></li>
+      <li><img class="pet-image" src="<%=item.photo%>"></li>
       <div id="view-details">
         <li><h4>Name: <%= item.name %></h4></li>
         <li><h4>Description: <%= item.description %></h4></li>
-      </div
+      </div>
     </ul>
 <% }) %>
 
