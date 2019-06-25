@@ -79,6 +79,8 @@ function Pet(query){
   this.description = query.description;
   console.log('query description', query.description)
   this.type = query.type;
+  this.photo = query.photos[0].large;
+  console.log(this.photo);
 }
 
 
