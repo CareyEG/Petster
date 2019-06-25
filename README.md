@@ -23,7 +23,7 @@ TBA
 * **Carey Goodwin** - [GitHub Profile](https://github.com/CareyEG)
 * **Na'ama Bar-Ilan** - [GitHub Profile](https://github.com/NaamaBarIlan)
 
-## Version**: 
+## Version: 
 1.0.0 
 
 ## Overview
