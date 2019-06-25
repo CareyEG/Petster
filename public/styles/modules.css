@@ -7,10 +7,10 @@
 /* Inputs */
 input {
   width: 50%;
-  height: 20%;
   margin-left: 25%;
   font-size: 1.4em;
   text-align: center;
+  margin-top: 10%;
 }
 
 /* Button */
@@ -21,9 +21,9 @@ input {
   font-size: 16px;
   border: none;
   border-radius: 5px;
-  width: 200px; 
-  margin-left:200px;
-  margin-top: 40px;
+  width: 34%; 
+  margin-left:33%;
+  margin-top: 10%;
 }
 
 /* Dropdown Button */
@@ -34,12 +34,13 @@ input {
   font-size: 16px;
   border: none;
   border-radius: 5px;
-  width: 300px;
+  width: 50%;
+  font-size: 1.2em;
 }
   
   /* The container <div> - needed to position the dropdown content */
   .dropdown {
-    margin-top: 40px;
+    margin-top: 10%;
     display: flex;
     justify-content: center;
   }
@@ -87,15 +88,6 @@ input {
   .btn:hover {background: #eee;}
   
   .default {color: black;}
-
-
-
-/* Hide view details on page load */
-
-.view-details {
-  display: none;
-}
-
 /* //////////////////////////// */
 /* //////////Searches////////// */
 /* //////////////////////////// */
@@ -140,4 +132,3 @@ input {
     margin-left: 30%;
     background-color:#31b512;
   }
-
