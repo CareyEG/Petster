@@ -1,12 +1,14 @@
 <%- include('../layout/head') %>
-<h1>This is favorites.ejs!</h1>
+<h1>Favorites</h1>
 <%- include('../layout/nav') %>
 
 <ul>
     <% petResultAPI.forEach(item => { %>
-    <li><h4>Name: <%= item.name %></h4></li>
-    <li><h4>Description: <%= item.description %></h4></li>
-    <li><img src="<%=item.photo%>"></li>
+    <div class="favorite-pets">
+        <li><img src="<%=item.photo%>"></li>
+        <li class="favorite-pets-name"><h4><%= item.name %></h4></li>
+        <li class="favorite-pets-description"><h4><%= item.description %></h4></li>
+    </div>
     <% }) %>
 </ul>
 

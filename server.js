@@ -79,6 +79,7 @@ function Pet(query){
   console.log('query description', query.description)
   this.type = query.type;
   this.photo = query.photos.length ? query.photos[0].large : 'placecage.com/200/200';
+  // this.photo = query.photos[0].large || 'placecage.com/200/200';
   console.log(this.photo);
 }
 

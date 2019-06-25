@@ -1,20 +1,20 @@
 <%- include('../layout/head') %>
 
+<h1>Search</h1>
+
 <%- include('../layout/nav') %>
 
-<div></div>
 
 <!-- <h4>Name: <%= petResultAPI.name %></h4>
 <h4>Description: <%= petResultAPI.description %></h4> -->
 
-<img id="pet" src="<%=petResultAPI.photo%>">
+<div id ="pet-image-heart">
+<img id="heart" src="/img/like.png">
+<img id="pet-image" src="<%=petResultAPI.photo%>">
+</div>
 
 
-<ul>
-        <li id="details-button">Details</li>
-</ul>
-
-<div class="view-details">
+<div id="view-details">
         <h4>Name: <%= petResultAPI.name %></h4>
         <h4>Description: <%= petResultAPI.description %></h4> 
         
@@ -22,6 +22,8 @@
 
 <button class="searchButtons" id="btnNoPet">No Pet</button>
 <button class="searchButtons" id="btnPet">Pet</button>
-<button class="searchButtons" id="btnDetails" onclick="window.location.href='/Details'">Details</button>
+<!-- <button class="searchButtons" id="btnDetails" onclick="window.location.href='/Details'">Details</button> -->
+<button class="searchButtons" id="btnDetails">Details</button>
+<button class="searchButtons" id="btnSave">Save</button>
 
 <%- include('../layout/footer') %>
