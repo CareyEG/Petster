@@ -85,7 +85,7 @@ function Pet(query){
   this.state = query.contact.address.state;
   this.description = query.description;
   this.photo = query.photos.length ? query.photos[0].large : 'placecage.com/200/200';
-  // console.log(this.photo);
+  console.log(this.photo);
 }
 
 function saveFavorite(petData){
