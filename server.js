@@ -42,6 +42,10 @@ app.get('/details', renderDetailsPage);
 
 
 function renderHomepage(request, response) {
+//   const URL = `https://api.petfinder.com/v2/oauth2/token?grant_type=client_credentials&client_id=${process.env.PET_FINDER_API_KEY}&client_secret=${process.env.PET_FINDER_SECRET}`
+//   superagent.get(URL)
+//     .then(data => console.log(data))
+//     .catch(error => handleError(error));
   response.render('pages/index');
 }
 
