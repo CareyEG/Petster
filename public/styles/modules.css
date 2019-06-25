@@ -12,11 +12,12 @@ input {
   margin-left: 15%;
   font-size: 1em;
   text-align: center;
+  color: black; 
   margin-top: 10%;
 }
 
 /* Button */
-#submit {
+#submit, .dropdown {
  background-color: #2F3A70;
   color: white;
   padding: .5em;
@@ -29,7 +30,7 @@ input {
 }
 
 /* Dropdown Button */
-.dropbtn {
+select {
   background-color: #2F3A70;
   color: white;
   padding: .5em;
