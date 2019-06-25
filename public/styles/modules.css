@@ -1,6 +1,30 @@
 /* Code from https://www.w3schools.com/howto/howto_css_text_buttons.asp */
 
+/* //////////////////////////// */
+/* //////////Index///////////// */
+/* //////////////////////////// */
 
+/* Inputs */
+input {
+  width: 50%;
+  height: 20%;
+  margin-left: 25%;
+  font-size: 1.4em;
+  text-align: center;
+}
+
+/* Button */
+#submit {
+ background-color: #05de29;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  width: 200px; 
+  margin-left:200px;
+  margin-top: 40px;
+}
 
 /* Dropdown Button */
 .dropbtn {
@@ -63,8 +87,9 @@
   .btn:hover {background: #eee;}
   
   .default {color: black;}
-
-/* Searches!!!!!!!!!!! */
+/* //////////////////////////// */
+/* //////////Searches////////// */
+/* //////////////////////////// */
 
   /* Images */
   #pet {
