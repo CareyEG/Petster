@@ -21,10 +21,7 @@ h3 {
   color: white;
 }
 
-a {
-  color: white;
-  text-decoration: none;
-}
+
 
 /* Nav Bar */
 nav {
@@ -45,3 +42,7 @@ li {
   margin-left:1em;
 }
 
+a {
+  color: white;
+  text-decoration: none;
+}

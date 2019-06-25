@@ -95,6 +95,10 @@ input {
 /* //////////Searches////////// */
 /* //////////////////////////// */
 
+ul {
+  display: none;
+}
+
   /* Images */
   #pet-image {
     max-width: 90%;
