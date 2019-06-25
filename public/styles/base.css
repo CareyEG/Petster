@@ -1,0 +1,11 @@
+html {
+  height: 100%;
+  background-image: linear-gradient(to bottom right, #2196F3, #8BC34A);
+}
+
+body {
+  max-width: 600px;
+  margin: auto;
+  height: 100%;
+}
+
