@@ -87,6 +87,15 @@ input {
   .btn:hover {background: #eee;}
   
   .default {color: black;}
+
+
+
+/* Hide view details on page load */
+
+.view-details {
+  display: none;
+}
+
 /* //////////////////////////// */
 /* //////////Searches////////// */
 /* //////////////////////////// */
@@ -131,3 +140,4 @@ input {
     margin-left: 30%;
     background-color:#31b512;
   }
+
