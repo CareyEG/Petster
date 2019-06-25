@@ -9,6 +9,11 @@ const methodOverride = require('method-override');
 // Environment variables
 require('dotenv').config();
 
+// Database set up
+const client = new pg.Client(process.env.DATABASE_URL)
+client.connect();
+client.on('err', err => console.error(err));
+
 // Application Setup
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -25,8 +30,6 @@ app.use(methodOverride((request, response) => {
     return method;
   }
 }));
-
-// TODO: Add Database Setup
 
 // Set the view engine for server-side templating
 app.set('view engine', 'ejs');
@@ -52,7 +55,8 @@ function renderHomepage(request, response) {
 
 
 function renderSearchPage(request, response) {
-  console.log(request.token);
+  
+  // console.log(request.token);
 
   let URL = 'https://api.petfinder.com/v2/animals'
   return superagent.get(URL)
@@ -65,26 +69,36 @@ function renderSearchPage(request, response) {
       return data
 
     })
-    // .then(results => {
-    //   console.log(results)
-    //   response.render('pages/search', { petResultAPI: results })
-    // })
+    
     .catch(error => handleError(error));
+
 }
 
 function Pet(query){
-  this.name = query.name;
-  console.log('query name', query.name)
-  this.description = query.description;
-  console.log('query description', query.description)
+  this.search_query = query;
   this.type = query.type;
+  this.name = query.name;
+  this.age = query.age;
+  this.gender = query.gender;
+  this.size = query.size;
+  this.city = query.contact.address.city;
+  this.state = query.contact.address.state;
+  this.description = query.description;
   this.photo = query.photos.length ? query.photos[0].large : 'placecage.com/200/200';
-  console.log(this.photo);
+  // console.log(this.photo);
 }
 
+function saveFavorite(petData){
+
+  console.log('!!!!!!! cacheSavedPetData query log ', petData);
+
+  // const insertSQL = `INSERT INTO favorites (type, name, age, gender, size, city, state, description, image_url) VALUES('${}','${}', ${}, ${}, '${}','${}', ${}, ${}, ${})RETURNING id;`;
+
+}
 
 function renderFavoritesPage(request, response) {
   console.log(request.token);
+
   // console.log('&&&&& renderSearchPage response: ', response);
 
   let URL = 'https://api.petfinder.com/v2/animals'
@@ -94,14 +108,7 @@ function renderFavoritesPage(request, response) {
     .then(apiResponse => {
       console.log('???????????????? apiResponse.body.animals', apiResponse.body.animals)
       const petInstances = apiResponse.body.animals.map(petObject => new Pet (petObject))
-      // response.send(petInstances);
-      response.render('pages/favorites', { petResultAPI: petInstances });
-      // return apiResponse.body.animals.map(item => {
-      //   let petResult = new Pet(item);
-      //   console.log('!!!!!!!! petResult: ', petResult);
-      //   response.render('pages/favorites', { petResultAPI: petResult })
-      //   return petResult
-      // })
+      response.send(petInstances);
     })
     .catch(error => handleError(error));
 }
