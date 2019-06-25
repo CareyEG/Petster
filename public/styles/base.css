@@ -13,3 +13,7 @@ body {
 * {
   font-family: 'Indie Flower', cursive;
 }
+
+main {
+  margin: 0 auto;
+  }
