@@ -49,7 +49,7 @@ function renderHomepage(request, response) {
 function renderSearchPage(request, response) {
   console.log(request.token);
 
-  response.render('pages/search');
+  // response.render('pages/search');
 
   let URL = 'https://api.petfinder.com/v2/animals'
   return superagent.get(URL)
@@ -58,8 +58,14 @@ function renderSearchPage(request, response) {
       // console.log('!!!!!',data.body.animals[0].name)
       let petResult = new Pet(data.body.animals[0]);
       console.log('PET RESULT!', petResult);
+      response.render('pages/search', { petResultAPI: petResult })
       return data
+
     })
+    // .then(results => {
+    //   console.log(results)
+    //   response.render('pages/search', { petResultAPI: results })
+    // })
     .catch(error => handleError(error));
 }
 
@@ -68,6 +74,7 @@ function Pet(query){
   console.log('query name', query.name)
   this.description = query.description;
   console.log('query description', query.description)
+  this.type = query.type;
 }
 
 
