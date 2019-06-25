@@ -12,5 +12,15 @@
 <button class="btn no-pet">No Pet</button>
 
 <ul>
-        <li><a href="/details">Details</a></li>
+        <li id="details-button">Details</li>
 </ul>
+
+<div class="view-details">
+        <h4>Name: <%= petResultAPI.name %></h4>
+        <h4>Description: <%= petResultAPI.description %></h4> 
+        
+</div>
+
+<%- include('../layout/footer') %>
+
+

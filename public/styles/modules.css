@@ -63,3 +63,10 @@
   .btn:hover {background: #eee;}
   
   .default {color: black;}
+
+
+/* Hide view details on page load */
+
+.view-details {
+  display: none;
+}
