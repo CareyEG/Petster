@@ -5,28 +5,45 @@
 
   <h2>Fill out the info for your perfect pet below</h2>
     <main>
-      <div class="dropdown">
+      <!-- <div class="dropdown">
         <button class="dropbtn">Pick Your Pet Type</button>
         <div class="dropdown-content">
           <a href="#">Dog</a>
           <a href="#">Cat</a>
           <a href="#">Bunny</a>
         </div>
-      </div>
+      </div> -->
+      <form>
+      <select class="dropdown" id="pet-type-dropdown">
+        <option class="dropbtn" value="default">Pick Your Pet Type</option>
+        <option value="Dog">Dog</option>
+        <option value="Cat">Cat</option>
+        <option value="Bunny">Bunny</option>
+      </select>
 
       <input type="text" name="firstname" placeholder="Enter Your City Here">
 
-      <div class="dropdown">
+      <!-- <div class="dropdown">
         <button class="dropbtn">How Far Are You Willing to Travel?</button>
         <div class="dropdown-content">
           <a href="#">5 miles</a>
           <a href="#">15 miles</a>
           <a href="#">25+ miles</a>
-        </div>
-      </div>
+        </div> -->
+      <!-- </div> -->
+      
+      <select class="dropdown">
+        <option class="dropbtn" value="default">How Far Are YOu Willing to Travel?</option>
+        <option>5 Miles</option>
+        <option>15 miles</option>
+        <option>25+ miles</option>
+      </select>
+
         <input type="text" name="firstname" placeholder="Enter Your Username Here">
 
       <button id="submit" onclick="window.location.href='/search'">Submit</button>
+    </form>
     </main>
+    <%- include('../layout/footer') %>
   </body>
 </html>
