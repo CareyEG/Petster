@@ -58,6 +58,7 @@ function renderSearchPage(request, response) {
       const petInstances = apiResponse.body.animals
         .filter(petObject => petObject.type === 'Cat')
         .map(cat => new Pet (cat))
+      console.log('!!!!!! petInstances: ',petInstances);
       response.render('pages/search', { petResultAPI: petInstances });
       // response.send(petInstances);
     })
@@ -65,7 +66,7 @@ function renderSearchPage(request, response) {
 }
 
 function Pet(query){
-  this.search_query = query;
+  // this.search_query = query;
   this.type = query.type;
   this.name = query.name;
   this.age = query.age;
