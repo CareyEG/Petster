@@ -1,0 +1,11 @@
+html {
+  height: 100%;
+}
+
+body {
+  max-width: 600px;
+  margin: auto;
+  background-color: gray;
+  height: 100%;
+}
+
