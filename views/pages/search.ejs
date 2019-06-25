@@ -1,14 +1,20 @@
 <%- include('../layout/head') %>
 
+<h1>Search</h1>
+
 <%- include('../layout/nav') %>
+
 
 <!-- Display Pets -->
 <% petResultAPI.forEach((item, index) => { %>
-  <ul id="<%=index %>">
-    <li><img class="pet" src="<%=item.photo%>"></li>
-    <li><h4>Name: <%= item.name %></h4></li>
-    <li><h4>Description: <%= item.description %></h4></li>
-  </ul>
+    <ul id="<%=index %>">
+      <img id="heart" src="/img/like.png">
+      <li><img class="pet" src="<%=item.photo%>"></li>
+      <div id="view-details">
+        <li><h4>Name: <%= item.name %></h4></li>
+        <li><h4>Description: <%= item.description %></h4></li>
+      </div
+    </ul>
 <% }) %>
 
 <!-- Buttons -->
@@ -23,7 +29,9 @@
 
 <button class="searchButtons" id="btnNoPet">No Pet</button>
 <button class="searchButtons" id="btnPet">Pet</button>
-<button class="searchButtons" id="btnDetails" onclick="window.location.href='/Details'">Details</button>
+<button class="searchButtons" id="btnDetails">Details</button>
+<button class="searchButtons" id="btnSave">Save</button>
+
 
 <!-- TODO: add a container inside form to display: hide the fields -->
 <form>
@@ -37,6 +45,7 @@
   <input type="text" name="description" value="<%= petResultAPI.description %>" required>  
   <submit class="searchButtons" id="btnDetails">Save</submit>
 </form>
+
 
 
 <%- include('../layout/footer') %>
