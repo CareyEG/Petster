@@ -42,21 +42,7 @@ app.get('/details', renderDetailsPage);
 
 
 function renderHomepage(request, response) {
-  // console.log(request.token);
-  // getToken();
-
   response.render('pages/index');
-
-  // let URL = 'https://api.petfinder.com/v2/animals'
-  // return superagent.get(URL)
-  //   .set('Authorization', `Bearer ${request.token}`)
-  //   .then(data => {
-  //     console.log('!!!!!',data.body.animals[0].name)
-  //     let petResult = new Pet(data.animals);
-  //     console.log('PET RESULT!', petResult);
-  //     return data
-  //   })
-  //   .catch(error => handleError(error));
 }
 
 
