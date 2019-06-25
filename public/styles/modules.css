@@ -95,12 +95,12 @@ input {
 /* //////////Searches////////// */
 /* //////////////////////////// */
 
-ul {
+.loadPets {
   display: none;
 }
 
   /* Images */
-  #pet-image {
+  .pet-image {
     max-width: 90%;
     max-height:50%;
     margin-bottom: 20%;
