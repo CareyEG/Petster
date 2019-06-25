@@ -46,32 +46,22 @@ app.get('/aboutUs', renderAboutUsPage);
 
 
 function renderHomepage(request, response) {
-//   const URL = `https://api.petfinder.com/v2/oauth2/token?grant_type=client_credentials&client_id=${process.env.PET_FINDER_API_KEY}&client_secret=${process.env.PET_FINDER_SECRET}`
-//   superagent.get(URL)
-//     .then(data => console.log(data))
-//     .catch(error => handleError(error));
   response.render('pages/index');
 }
 
 
 function renderSearchPage(request, response) {
-  
-  // console.log(request.token);
-
   let URL = 'https://api.petfinder.com/v2/animals'
   return superagent.get(URL)
     .set('Authorization', `Bearer ${request.token}`)
-    .then(data => {
-      // console.log('!!!!!',data.body.animals[0].name)
-      let petResult = new Pet(data.body.animals[0]);
-      console.log('PET RESULT!', petResult);
-      response.render('pages/search', { petResultAPI: petResult })
-      return data
-
+    .then(apiResponse => {
+      const petInstances = apiResponse.body.animals
+        .filter(petObject => petObject.type === 'Cat')
+        .map(cat => new Pet (cat))
+      response.render('pages/search', { petResultAPI: petInstances });
+      // response.send(petInstances);
     })
-    
     .catch(error => handleError(error));
-
 }
 
 function Pet(query){
@@ -84,6 +74,8 @@ function Pet(query){
   this.city = query.contact.address.city;
   this.state = query.contact.address.state;
   this.description = query.description;
+  this.description = query.description;
+  this.type = query.type;
   this.photo = query.photos.length ? query.photos[0].large : 'placecage.com/200/200';
   console.log(this.photo);
 }
@@ -97,18 +89,15 @@ function saveFavorite(petData){
 }
 
 function renderFavoritesPage(request, response) {
-  console.log(request.token);
-
-  // console.log('&&&&& renderSearchPage response: ', response);
-
   let URL = 'https://api.petfinder.com/v2/animals'
-
   return superagent.get(URL)
     .set('Authorization', `Bearer ${request.token}`)
     .then(apiResponse => {
-      console.log('???????????????? apiResponse.body.animals', apiResponse.body.animals)
-      const petInstances = apiResponse.body.animals.map(petObject => new Pet (petObject))
-      response.send(petInstances);
+      const petInstances = apiResponse.body.animals
+        .filter(petObject => petObject.type === 'Cat')
+        .map(cat => new Pet (cat))
+      response.render('pages/favorites', { petResultAPI: petInstances });
+      // response.send(petInstances);
     })
     .catch(error => handleError(error));
 }
@@ -140,5 +129,7 @@ function getToken(request, response, next) {
     })
     .catch(error => handleError(error));
 }
+
+// Button Event Handler
 
 app.listen(PORT, () => console.log(`Listening on ${PORT}`));
