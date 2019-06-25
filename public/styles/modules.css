@@ -1,6 +1,30 @@
 /* Code from https://www.w3schools.com/howto/howto_css_text_buttons.asp */
 
+/* //////////////////////////// */
+/* //////////Index///////////// */
+/* //////////////////////////// */
 
+/* Inputs */
+input {
+  width: 50%;
+  height: 20%;
+  margin-left: 25%;
+  font-size: 1.4em;
+  text-align: center;
+}
+
+/* Button */
+#submit {
+ background-color: #05de29;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  width: 200px; 
+  margin-left:200px;
+  margin-top: 40px;
+}
 
 /* Dropdown Button */
 .dropbtn {
@@ -65,8 +89,55 @@
   .default {color: black;}
 
 
+
 /* Hide view details on page load */
 
 .view-details {
   display: none;
 }
+
+/* //////////////////////////// */
+/* //////////Searches////////// */
+/* //////////////////////////// */
+
+  /* Images */
+  #pet {
+    max-width: 100%;
+    max-height:80%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 25px;
+    -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+    box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+  }
+
+  .searchButtons {
+    margin-top: 3%;
+    width: 40%;
+    height: 4%;
+    font-size: 1.5em;
+    color:white;
+    border: none;
+    border-radius: 5px;
+    -webkit-box-shadow: 4px 4px 2px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 4px 4px 2px 0px rgba(0,0,0,0.75);
+    box-shadow: 4px 4px 2px 0px rgba(0,0,0,0.75);
+  }
+
+  #btnPet{
+    margin-left: 6%;
+    background-color: #3333ca;
+  }
+
+  #btnNoPet {
+    margin-left: 8%;
+    background-color: #dc5858;
+  }
+
+  #btnDetails {
+    margin-left: 30%;
+    background-color:#31b512;
+  }
+

@@ -1,15 +1,14 @@
 <%- include('../layout/head') %>
-<h1>This is search.ejs!</h1>
+
 <%- include('../layout/nav') %>
 
 <div></div>
 
 <!-- <h4>Name: <%= petResultAPI.name %></h4>
 <h4>Description: <%= petResultAPI.description %></h4> -->
-<img src="<%=petResultAPI.photo%>">
 
-<button class="btn pet">Pet</button>
-<button class="btn no-pet">No Pet</button>
+<img id="pet" src="<%=petResultAPI.photo%>">
+
 
 <ul>
         <li id="details-button">Details</li>
@@ -21,6 +20,8 @@
         
 </div>
 
+<button class="searchButtons" id="btnNoPet">No Pet</button>
+<button class="searchButtons" id="btnPet">Pet</button>
+<button class="searchButtons" id="btnDetails" onclick="window.location.href='/Details'">Details</button>
+
 <%- include('../layout/footer') %>
-
-
