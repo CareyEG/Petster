@@ -1,7 +1,7 @@
 # Petster
 The most awesomest pet app out there. Find your true 1/4 of a life companion!
 
-# Libraries
+## Libraries
 
 dotenv, pg, express, superagent, methodOverride, ejs
 
@@ -16,14 +16,15 @@ font-family:
 
 TBA
 
-**Authors**
+## Authors
 
 * **Lillian Gales** - [GitHub Profile](https://github.com/lillielise)
 * **Evan BC** - [GitHub Profile](https://github.com/EvanBC1)
 * **Carey Goodwin** - [GitHub Profile](https://github.com/CareyEG)
 * **Na'ama Bar-Ilan** - [GitHub Profile](https://github.com/NaamaBarIlan)
 
-**Version**: 1.0.0 
+## Version**: 
+1.0.0 
 
 ## Overview
 
