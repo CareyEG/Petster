@@ -10,11 +10,22 @@
     <ul class="loadPets" id="<%=index %>">
       <img id="heart" src="/img/like.png">
       <li><img class="pet-image" src="<%=item.photo%>"></li>
-      <div id="view-details">
+      <div class="view-details">
         <li><h4>Name: <%= item.name %></h4></li>
         <li><h4>Description: <%= item.description %></h4></li>
       </div>
     </ul>
+    <form class ="petDetail">
+      <input type="text" name="type" value="<%= item.type %>" required>
+      <input type="text" name="name" value="<%= item.name %>" required>  
+      <input type="text" name="age" value="<%= item.age %>" required>  
+      <input type="text" name="gender" value="<%= item.gender %>" required>  
+      <input type="text" name="size" value="<%= item.size %>" required>  
+      <input type="text" name="city" value="<%= item.city %>" required>  
+      <input type="text" name="state" value="<%= item.state %>" required>  
+      <input type="text" name="description" value="<%= item.description %>" required>  
+      <submit id="<%=index %>" class="searchButtons" id="btnDetails">Save</submit>
+    </form>
 <% }) %>
 
 <!-- Buttons -->
@@ -22,29 +33,18 @@
   <li id="details-button">Details</li>
 </ul>
 
-<div class="view-details">
-  <h4>Name: <%= petResultAPI.name %></h4>
-  <h4>Description: <%= petResultAPI.description %></h4>       
-</div>
+
 
 <button class="searchButtons" id="btnNoPet">No Pet</button>
 <button class="searchButtons" id="btnPet">Pet</button>
 <button class="searchButtons" id="btnDetails">Details</button>
-<button class="searchButtons" id="btnSave">Save</button>
+<!-- <button class="searchButtons" id="btnSave">Save</button> -->
 
 
 <!-- TODO: add a container inside form to display: hide the fields -->
-<form>
-  <input type="text" name="type" value="<%= petResultAPI.type %>" required>
-  <input type="text" name="name" value="<%= petResultAPI.name %>" required>  
-  <input type="text" name="age" value="<%= petResultAPI.age %>" required>  
-  <input type="text" name="gender" value="<%= petResultAPI.gender %>" required>  
-  <input type="text" name="size" value="<%= petResultAPI.size %>" required>  
-  <input type="text" name="city" value="<%= petResultAPI.city %>" required>  
-  <input type="text" name="state" value="<%= petResultAPI.state %>" required>  
-  <input type="text" name="description" value="<%= petResultAPI.description %>" required>  
-  <submit class="searchButtons" id="btnDetails">Save</submit>
-</form>
+
+
+
 
 
 

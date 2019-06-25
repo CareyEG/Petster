@@ -147,10 +147,12 @@ input {
 
 /* ////////////SEARCH PAGE///////////// */
 
-#view-details {
+.view-details {
   display: none;
 }
-
+.petDetails {
+  display: none;
+}
 
 /* ////////////FAVORITES PAGE///////////// */
 
