@@ -4,6 +4,7 @@ margin: 0 auto;
 
 
 h1 {
+  font-family: 'Lobster', cursive;
   margin-top: 20px;
   text-align: center;
   font-size: 2em;
@@ -15,6 +16,7 @@ h2 {
   text-align: center;
   font-size: 1.5em;
   color: white;
+  font-family: 'Indie Flower', cursive;
 }
 
 h3 {
@@ -24,9 +26,15 @@ h3 {
   color: white;
 }
 
+a {
+  color: white;
+  text-decoration: none;
+}
+
 /* Nav Bar */
 nav{
-  margin-top: 30px;
+  margin-top: 2%;
+  margin-bottom: 2%;
   text-align: center;
 }
 
@@ -41,12 +49,14 @@ li {
   margin-left:1em;
 }
 
+/* Inputs */
 input {
   width: 300px;
   height: 30px;
   margin-left: 150px;
 }
 
+/* Button */
 #submit {
  background-color: #05de29;
   color: white;
