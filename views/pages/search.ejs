@@ -2,22 +2,23 @@
 
 <%- include('../layout/nav') %>
 
-<div></div>
+<!-- Display Pets -->
+<% petResultAPI.forEach((item, index) => { %>
+  <ul id="<%=index %>">
+    <li><img class="pet" src="<%=item.photo%>"></li>
+    <li><h4>Name: <%= item.name %></h4></li>
+    <li><h4>Description: <%= item.description %></h4></li>
+  </ul>
+<% }) %>
 
-<!-- <h4>Name: <%= petResultAPI.name %></h4>
-<h4>Description: <%= petResultAPI.description %></h4> -->
-
-<img id="pet" src="<%=petResultAPI.photo%>">
-
-
+<!-- Buttons -->
 <ul>
-        <li id="details-button">Details</li>
+  <li id="details-button">Details</li>
 </ul>
 
 <div class="view-details">
-        <h4>Name: <%= petResultAPI.name %></h4>
-        <h4>Description: <%= petResultAPI.description %></h4> 
-        
+  <h4>Name: <%= petResultAPI.name %></h4>
+  <h4>Description: <%= petResultAPI.description %></h4>       
 </div>
 
 <button class="searchButtons" id="btnNoPet">No Pet</button>

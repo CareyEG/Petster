@@ -92,9 +92,13 @@ input {
 /* //////////Searches////////// */
 /* //////////////////////////// */
 
+ul {
+  display: none;
+}
+
   /* Images */
-  #pet {
-    max-width: 100%;
+  .pet {
+    max-width: 96%;
     max-height:80%;
     display: block;
     margin-left: auto;
