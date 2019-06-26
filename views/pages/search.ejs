@@ -40,14 +40,28 @@
       </div>
     </form>
 
-    <button class="searchButtons btnDetails">Details</button>
+    <form class ="petDetail" id="save-data" action="/details" method="post">
+      <div class="hide-form-save-data">
+        <input type="text" name="type" value="<%= item.type %>" required>
+        <input type="text" name="name" value="<%= item.name %>" required>  
+        <input type="text" name="age" value="<%= item.age %>" required>  
+        <input type="text" name="gender" value="<%= item.gender %>" required>  
+        <input type="text" name="size" value="<%= item.size %>" required>  
+        <input type="text" name="postcode" value="<%= item.postcode %>" required> 
+        <input type="text" name="city" value="<%= item.city %>" required>  
+        <input type="text" name="state" value="<%= item.state %>" required>  
+        <input type="text" name="description" value="<%= item.description %>" required>  
+        <input type="text" name="photo" value="<%= item.photo %>" required> 
+        
+      </div>
+      <button class="searchButtons <%=index %>" id="btnSave">details</button>
+  </form>
+
+
   </div>
     <% }) %>
     
-    <div id="Test">
-
-    </div>
-   
+  
 
 <!-- <button class="searchButtons" id="btnSave">Save</button> -->
 
