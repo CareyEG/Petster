@@ -42,9 +42,18 @@ app.get('/favorites', getToken, renderFavoritesPage);
 app.get('/details', renderDetailsPage);
 app.get('/aboutUs', renderAboutUsPage);
 app.post('/favorites', saveFavorite);
+app.post('/details', showDetail)
 
 // Helper Functions:
 
+
+function showDetail(request, response) {
+  const detailsResponse = request.body;
+  // response.send(request.body);
+  // response.render('pages/details');
+  response.render('pages/details', { petDetailsResponse: detailsResponse });
+  
+}
 
 function renderHomepage(request, response) {
   response.render('pages/index');
@@ -62,7 +71,7 @@ function renderSearchPage(request, response) {
 
   console.log(queryType)
 
-  let URL = `https://api.petfinder.com/v2/animals?type=${queryType}&location=${queryZipCode}&distance=5&limit=100&sort=random`
+  let URL = `https://api.petfinder.com/v2/animals?type=${queryType}&location=${queryZipCode}&distance=${queryDistance}&limit=100&sort=random`
 
 
 
