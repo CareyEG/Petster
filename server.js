@@ -54,13 +54,15 @@ function renderHomepage(request, response) {
 function renderSearchPage(request, response) {
 
   let queryType = request.query.type;
-  let querySearch = request.query.city;
-  let queryDistance = request.query.travelDistance;
+  let queryZipCode = request.query.city;
+  console.log('SEARCH', queryZipCode)
+  let queryDistance = (request.query.travelDistance.match(/\d/))[0];
+  console.log('distance', queryDistance)
   let queryName = request.query.firstName;
 
   console.log(queryType)
 
-  let URL = `https://api.petfinder.com/v2/animals?type=${queryType}`
+  let URL = `https://api.petfinder.com/v2/animals?type=${queryType}&location=${queryZipCode}&distance=${queryDistance}&limit=100&sort=random`
 
 
 
@@ -78,6 +80,7 @@ function renderSearchPage(request, response) {
 function Pet(query){
   // this.search_query = query;
   this.type = query.type;
+  this.id = query.id;
   this.name = query.name;
   this.age = query.age;
   this.gender = query.gender;
