@@ -15,7 +15,7 @@
         <li><h4>Description: <%= item.description %></h4></li>
       </div>
     </ul>
-    <form class ="petDetail">
+    <form class ="petDetail" id="save-data" action="/favorites" method="post">
       <input type="text" name="type" value="<%= item.type %>" required>
       <input type="text" name="name" value="<%= item.name %>" required>  
       <input type="text" name="age" value="<%= item.age %>" required>  
@@ -24,7 +24,8 @@
       <input type="text" name="city" value="<%= item.city %>" required>  
       <input type="text" name="state" value="<%= item.state %>" required>  
       <input type="text" name="description" value="<%= item.description %>" required>  
-      <submit id="<%=index %>" class="searchButtons" id="btnDetails">Save</submit>
+      <input type="text" name="photo" value="<%= item.photo %>" required> 
+      <button id="<%=index %>" class="searchButtons" id="btnDetails">Save</button>
     </form>
 <% }) %>
 
@@ -37,8 +38,6 @@
 <button class="searchButtons" id="btnDetails">Details</button>
 <!-- <button class="searchButtons" id="btnSave">Save</button> -->
 
-
-<!-- TODO: add a container inside form to display: hide the fields -->
 
 
 

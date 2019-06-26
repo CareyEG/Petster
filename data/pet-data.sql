@@ -10,8 +10,8 @@ CREATE TABLE favorites (
   city VARCHAR(255),
   state VARCHAR(255),
   description TEXT,
-  image_url VARCHAR(255)
+  photo VARCHAR(255)
 );
 
-INSERT INTO favorites (type, name, age, gender, size, city, state, description, image_url)
+INSERT INTO favorites (type, name, age, gender, size, city, state, description, photo)
 VALUES('Cat','Merida','Young','Female','Medium','Orange','CA','Very sweet, she gets along with other dogs', 'https://dl5zpyw5k3jeb.cloudfront.net/photos/pets/45078342/1/?bust=1561486424');
