@@ -9,12 +9,12 @@ $('#btnDetails').on('click', function(){
 });
 
 let count = 0;
-$(`#${count}`).show();
+$(`.${count}`).show();
 
 $('#btnPet').on('click', function(){
   count++
-  $(`#${count}`).show();
-  $(`#${count-1}`).hide();
+  $(`.${count}`).show();
+  $(`.${count-1}`).hide();
 });
 
 // console.log($('#pet-type-dropdown').val());

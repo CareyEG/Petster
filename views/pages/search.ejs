@@ -7,15 +7,14 @@
 
 <!-- Display Pets -->
 <% petResultAPI.forEach((item, index) => { %>
-    <ul class="loadPets" id="<%=index %>">
-      <img id="heart" src="/img/like.png">
+    <ul class="loadPets <%= index %>">
       <li><img class="pet-image" src="<%=item.photo%>"></li>
       <div class="view-details">
         <li><h4>Name: <%= item.name %></h4></li>
         <li><h4>Description: <%= item.description %></h4></li>
       </div>
     </ul>
-    <form class ="petDetail" id="save-data" action="/favorites" method="post">
+    <form class ="petDetails" id="save-data" action="/favorites" method="post">
       <input type="text" name="type" value="<%= item.type %>" required>
       <input type="text" name="name" value="<%= item.name %>" required>  
       <input type="text" name="age" value="<%= item.age %>" required>  
@@ -25,7 +24,7 @@
       <input type="text" name="state" value="<%= item.state %>" required>  
       <input type="text" name="description" value="<%= item.description %>" required>  
       <input type="text" name="photo" value="<%= item.photo %>" required> 
-      <button id="<%=index %>" class="searchButtons" id="btnDetails">Save</button>
+      <button class="<%= index %> searchButtons" id="btnDetails">Save</button>
     </form>
 <% }) %>
 
@@ -37,11 +36,6 @@
 <button class="searchButtons" id="btnPet">Pet</button>
 <button class="searchButtons" id="btnDetails">Details</button>
 <!-- <button class="searchButtons" id="btnSave">Save</button> -->
-
-
-
-
-
 
 
 <%- include('../layout/footer') %>

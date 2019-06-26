@@ -97,7 +97,11 @@ select {
 /* //////////////////////////// */
 
 .loadPets {
-  display: none;
+  display:none
+}
+
+.petDetails {
+  display:noneq
 }
 
   /* Images */
@@ -151,12 +155,6 @@ select {
 
 /* ////////////SEARCH PAGE///////////// */
 
-.view-details {
-  display: none;
-}
-.petDetails {
-  display: none;
-}
 
 /* ////////////FAVORITES PAGE///////////// */
 
@@ -176,3 +174,11 @@ select {
   max-width: 100%;
   display: flex;
 } 
+
+/* //////////////////////////// */
+/* //////////Favorites///////// */
+/* //////////////////////////// */
+
+.favoriteImg {
+  border-radius: 5px;
+}
