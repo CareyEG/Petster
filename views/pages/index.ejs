@@ -15,13 +15,14 @@
       </div> -->
       <form id="user-form" action="/search" method="GET">
       <select class="dropdown" name="type" id="pet-type-dropdown">
-        <option class="dropbtn" value="default">Pick Your Pet Type</option>
+        <!-- change back to default - using dog for testing -->
+        <option class="dropbtn" name="Dog" value="Dog">Dog</option>
         <option name="Dog" value="Dog">Dog</option>
         <option name="Cat" value="Cat">Cat</option>
         <option name="Bunny" value="Bunny">Bunny</option>
       </select>
 
-      <input type="text" name="city" placeholder="Enter Your City Here">
+      <input type="text" name="city" placeholder="Enter Your City Here" value="Seattle">
       
       <select class="dropdown" name="travelDistance" id="travel-distance-dropdown">
         <option class="dropbtn" value="default">How Far Are You Willing to Travel?</option>
@@ -30,7 +31,7 @@
         <option name="25+-miles" value="25+-miles">25+ miles</option>
       </select>
 
-        <input type="text" name="firstName" placeholder="Enter Your Username Here">
+        <input type="text" name="firstName" placeholder="Enter Your Username Here" value="lillie">
 
       <button id="submit" onclick="window.location.href='/search'">Submit</button>
     </form>

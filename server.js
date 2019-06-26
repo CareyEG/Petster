@@ -52,7 +52,6 @@ function renderHomepage(request, response) {
 
 
 function renderSearchPage(request, response) {
-  let URL = 'https://api.petfinder.com/v2/animals'
 
   let queryType = request.query.type;
   let querySearch = request.query.city;
@@ -61,16 +60,17 @@ function renderSearchPage(request, response) {
 
   console.log(queryType)
 
-  // console.log(queryName)
+  let URL = `https://api.petfinder.com/v2/animals?type=${queryType}`
+
+
+
   return superagent.get(URL)
     .set('Authorization', `Bearer ${request.token}`)
     .then(apiResponse => {
+      // console.log('!!!!!!!!', apiResponse.body.animals)
       const petInstances = apiResponse.body.animals
-        .filter(petObject => petObject.type === queryType)
-        .map(cat => new Pet (cat))
-      console.log('!!!!!! petInstances: ',petInstances);
+        .map(pet => new Pet (pet))
       response.render('pages/search', { petResultAPI: petInstances });
-      // response.send(petInstances);
     })
     .catch(error => handleError(error));
 }
@@ -86,8 +86,8 @@ function Pet(query){
   this.state = query.contact.address.state;
   this.description = query.description;
   this.type = query.type;
+  console.log('photos', query)
   this.photo = query.photos.length ? query.photos[0].large : 'http://www.placecage.com/200/200';
-  console.log(this.photo);
 }
 
 function saveFavorite(request, response){
