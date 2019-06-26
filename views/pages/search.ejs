@@ -9,20 +9,18 @@
 <% petResultAPI.forEach((item, index) => { %>
 
   <div class="loadPets <%=index %>">
-
     <img class="heart" src="/img/like.png">
       <ul class="<%=index %>">
         
         <li><img class="pet-image" src="<%=item.photo%>"></li>
       
-        
         <div class="view-details">
           <li><h4 id="view-name"><%= item.name %></h4></li>
           <li><h4 id="view-description"><%= item.description %></h4></li>
         </div>
 
       </ul>
-      <form class ="petDetail" id="save-data" action="/favorites" method="post">
+      <form class ="petDetail <%=index %>Form" id="save-data" action="/favorites" method="post">
         <div class="hide-form-save-data">
           <input type="text" name="type" value="<%= item.type %>" required>
           <input type="text" name="name" value="<%= item.name %>" required>  
