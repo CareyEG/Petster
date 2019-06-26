@@ -56,13 +56,13 @@ function renderSearchPage(request, response) {
   let queryType = request.query.type;
   let queryZipCode = request.query.city;
   console.log('SEARCH', queryZipCode)
-  let queryDistance = (request.query.travelDistance.match(/\d/))[0];
-  console.log('distance', queryDistance)
+  let queryDistance = request.query.travelDistance;
+  console.log('distance', request.query.travelDistance)
   let queryName = request.query.firstName;
 
   console.log(queryType)
 
-  let URL = `https://api.petfinder.com/v2/animals?type=${queryType}&location=${queryZipCode}&distance=${queryDistance}&limit=100&sort=random`
+  let URL = `https://api.petfinder.com/v2/animals?type=${queryType}&location=${queryZipCode}&distance=5&limit=100&sort=random`
 
 
 
@@ -71,7 +71,6 @@ function renderSearchPage(request, response) {
     .then(apiResponse => {
       const petInstances = apiResponse.body.animals
         .map(pet => new Pet (pet))
-      console.log('Length!!!!', petInstances.length)
       response.render('pages/search', { petResultAPI: petInstances });
     })
     .catch(error => handleError(error));
@@ -88,6 +87,7 @@ function Pet(query){
   this.city = query.contact.address.city;
   this.state = query.contact.address.state;
   this.description = query.description;
+  console.log(this.description)
   this.type = query.type;
   // console.log('photos', query)
   this.photo = query.photos.length ? query.photos[0].large : 'http://www.placecage.com/200/200';
@@ -116,7 +116,7 @@ function saveFavorite(request, response){
 function renderFavoritesPage(request, response) {
   let URL = 'https://api.petfinder.com/v2/animals'
   // console.log('query type', queryType)
-  console.log('you saved to DB')
+  
   return superagent.get(URL)
     .set('Authorization', `Bearer ${request.token}`)
     .then(apiResponse => {

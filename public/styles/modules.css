@@ -100,15 +100,20 @@ select {
   display: none;
 }
 
+#hide-buttons {
+  display: none;
+}
+
 .hide-form-save-data {
   display: none;
 }
 
   /* Images */
   .pet-image {
+    width: 600px;
     max-width: 90%;
-    max-height:50%;
-    margin-bottom: 20%;
+    /* max-height:50%; */
+    margin: 10% 0;
     display: block;
     margin-left: auto;
     margin-right: auto;
@@ -117,11 +122,24 @@ select {
     -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
     box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
   }
+  
 
   #heart {
     display: block;
+    margin: 0 auto;
+  }
+
+  #view-name {
+    font-size: 1.5em;
+    margin-bottom: .5em;
+    text-align: center;
   }
   
+  #view-description {
+    padding: .5em;
+    line-height: 1.5em;
+    font-size: 1em;
+  }
 
   .searchButtons {
     margin-top: 3%;
@@ -146,7 +164,7 @@ select {
     background-color: #2F3A70;
   }
 
-  #btnDetails {
+  .btnDetails {
     margin-left: 30%;
     background-color:#D9D9D9;
     color: black;
