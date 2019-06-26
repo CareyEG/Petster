@@ -21,28 +21,32 @@ h3 {
   color: white;
 }
 
-
-
 /* Nav Bar */
 nav {
   margin-top: 10%;
   margin-bottom: 10%;
   text-align: center;
-  font-size: 1em
+  font-size: 1.5em
 }
 
-ul {
+.navUl {
+
   display: flex;
   flex-wrap: wrap;
   list-style-type: none;
   justify-content: center;
 }
 
-li {
+.navLi {
   margin-left:1em;
 }
 
-a {
+.navA {
+  margin-left:1em;
   color: white;
   text-decoration: none;
+}
+
+.favoritePet {
+  text-align: center;
 }

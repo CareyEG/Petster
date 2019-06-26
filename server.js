@@ -41,6 +41,7 @@ app.get('/search', getToken, renderSearchPage);
 app.get('/favorites', getToken, renderFavoritesPage);
 app.get('/details', renderDetailsPage);
 app.get('/aboutUs', renderAboutUsPage);
+app.post('/favorites', saveFavorite);
 
 // Helper Functions:
 
@@ -51,16 +52,26 @@ function renderHomepage(request, response) {
 
 
 function renderSearchPage(request, response) {
-  let URL = 'https://api.petfinder.com/v2/animals'
+
+  let queryType = request.query.type;
+  let queryZipCode = request.query.city;
+  console.log('SEARCH', queryZipCode)
+  let queryDistance = request.query.travelDistance;
+  console.log('distance', request.query.travelDistance)
+  let queryName = request.query.firstName;
+
+  console.log(queryType)
+
+  let URL = `https://api.petfinder.com/v2/animals?type=${queryType}&location=${queryZipCode}&distance=5&limit=100&sort=random`
+
+
+
   return superagent.get(URL)
     .set('Authorization', `Bearer ${request.token}`)
     .then(apiResponse => {
       const petInstances = apiResponse.body.animals
-        .filter(petObject => petObject.type === 'Cat')
-        .map(cat => new Pet (cat))
-      console.log('!!!!!! petInstances: ',petInstances);
+        .map(pet => new Pet (pet))
       response.render('pages/search', { petResultAPI: petInstances });
-      // response.send(petInstances);
     })
     .catch(error => handleError(error));
 }
@@ -68,6 +79,7 @@ function renderSearchPage(request, response) {
 function Pet(query){
   // this.search_query = query;
   this.type = query.type;
+  this.id = query.id;
   this.name = query.name;
   this.age = query.age;
   this.gender = query.gender;
@@ -75,22 +87,36 @@ function Pet(query){
   this.city = query.contact.address.city;
   this.state = query.contact.address.state;
   this.description = query.description;
-  this.description = query.description;
+  console.log(this.description)
   this.type = query.type;
-  this.photo = query.photos.length ? query.photos[0].large : 'placecage.com/200/200';
-  console.log(this.photo);
+  // console.log('photos', query)
+  this.photo = query.photos.length ? query.photos[0].large : 'http://www.placecage.com/200/200';
 }
 
-function saveFavorite(petData){
+function saveFavorite(request, response){
 
-  console.log('!!!!!!! cacheSavedPetData query log ', petData);
+  let { type, name, age, gender, size, city, state, description, photo } = request.body;
 
-  // const insertSQL = `INSERT INTO favorites (type, name, age, gender, size, city, state, description, image_url) VALUES('${}','${}', ${}, ${}, '${}','${}', ${}, ${}, ${})RETURNING id;`;
+  const SQL = `INSERT INTO favorites (type, name, age, gender, size, city, state, description, photo) VALUES('${type}','${name}', '${age}', '${gender}', '${size}','${city}', '${state}', '${description}', '${photo}') RETURNING id;`;
+
+  // let values = [type, name, age, gender, size, city, state, description, photo];
+
+  console.log(SQL);
+  return client.query(SQL)
+    .then(sqlResults => { console.log('hello')
+    // TODO: change redirect to response.render so that user stays on the search page and sees another pet option. 
+      response.redirect(`/favorites/${sqlResults.rows[0].id}`)
+    })
+    .catch(error => handleError(error, response));
+
+  // response.send(request.body);
 
 }
 
 function renderFavoritesPage(request, response) {
   let URL = 'https://api.petfinder.com/v2/animals'
+  // console.log('query type', queryType)
+  
   return superagent.get(URL)
     .set('Authorization', `Bearer ${request.token}`)
     .then(apiResponse => {
@@ -130,6 +156,21 @@ function getToken(request, response, next) {
     })
     .catch(error => handleError(error));
 }
+
+// function getSearchSelectors(request, response){
+
+//   console.log('request', request.body)
+//   let queryType = request.body.type;
+//   let querySearch = request.body.city;
+//   let queryDistance = request.body.travelDistance;
+//   let queryName = request.body.firstName;
+
+//   console.log(queryType)
+
+//   return queryType;
+
+
+// }
 
 // Button Event Handler
 

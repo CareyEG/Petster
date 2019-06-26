@@ -4,45 +4,52 @@
 
 <%- include('../layout/nav') %>
 
-
+<!-- <img id="heart" src="/img/like.png"> -->
 <!-- Display Pets -->
 <% petResultAPI.forEach((item, index) => { %>
-    <ul class="loadPets" id="<%=index %>">
-      <img id="heart" src="/img/like.png">
-      <li><img class="pet-image" src="<%=item.photo%>"></li>
-      <div class="view-details">
-        <li><h4>Name: <%= item.name %></h4></li>
-        <li><h4>Description: <%= item.description %></h4></li>
+
+  <div class="loadPets <%=index %>">
+
+    <img class="heart" src="/img/like.png">
+      <ul class="<%=index %>">
+        
+        <li><img class="pet-image" src="<%=item.photo%>"></li>
+      
+        
+        <div class="view-details">
+          <li><h4 id="view-name"><%= item.name %></h4></li>
+          <li><h4 id="view-description"><%= item.description %></h4></li>
+        </div>
+
+      </ul>
+      <form class ="petDetail" id="save-data" action="/favorites" method="post">
+        <div class="hide-form-save-data">
+          <input type="text" name="type" value="<%= item.type %>" required>
+          <input type="text" name="name" value="<%= item.name %>" required>  
+          <input type="text" name="age" value="<%= item.age %>" required>  
+          <input type="text" name="gender" value="<%= item.gender %>" required>  
+          <input type="text" name="size" value="<%= item.size %>" required>  
+          <input type="text" name="city" value="<%= item.city %>" required>  
+          <input type="text" name="state" value="<%= item.state %>" required>  
+          <input type="text" name="description" value="<%= item.description %>" required>  
+          <input type="text" name="photo" value="<%= item.photo %>" required> 
+          
+          <button class="searchButtons <%=index %>" id="btnSave"></button>
+
+      
       </div>
-    </ul>
-    <form class ="petDetail">
-      <input type="text" name="type" value="<%= item.type %>" required>
-      <input type="text" name="name" value="<%= item.name %>" required>  
-      <input type="text" name="age" value="<%= item.age %>" required>  
-      <input type="text" name="gender" value="<%= item.gender %>" required>  
-      <input type="text" name="size" value="<%= item.size %>" required>  
-      <input type="text" name="city" value="<%= item.city %>" required>  
-      <input type="text" name="state" value="<%= item.state %>" required>  
-      <input type="text" name="description" value="<%= item.description %>" required>  
-      <submit id="<%=index %>" class="searchButtons" id="btnDetails">Save</submit>
     </form>
-<% }) %>
 
-<!-- Buttons -->
+    <button class="searchButtons btnDetails">Details</button>
+  </div>
+    <% }) %>
+    
+    <div id="Test">
 
+    </div>
+   
 
-
-<button class="searchButtons" id="btnNoPet">No Pet</button>
-<button class="searchButtons" id="btnPet">Pet</button>
-<button class="searchButtons" id="btnDetails">Details</button>
 <!-- <button class="searchButtons" id="btnSave">Save</button> -->
-
-
-<!-- TODO: add a container inside form to display: hide the fields -->
-
-
-
-
 
 
 <%- include('../layout/footer') %>
