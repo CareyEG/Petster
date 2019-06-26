@@ -9,8 +9,11 @@
         <li class="favorite-pets-name"><h4><%= item.name %></h4></li>
         <li class="favorite-pets-age"><h4><%= item.age %></h4></li>
         <li class="favorite-pets-description"><h4><%= item.description %></h4></li>
-        <button id="btnMenu"></button>
-        <button id="btnMenu"></button>
+        
+        <form class="unlist" action="/favorites/<%= item.id %>" method="post">
+          <input type="hidden" name="_method" value="delete" />
+          <button id="delete-button">Remove From Favorites</button>
+        </form>
     </div>
     <% }) %>
 </ul>
