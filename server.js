@@ -41,11 +41,7 @@ app.get('/search', getToken, renderSearchPage);
 app.get('/favorites', getToken, renderFavoritesPage);
 app.get('/details', renderDetailsPage);
 app.get('/aboutUs', renderAboutUsPage);
-<<<<<<< HEAD
-// app.post('/search', getSearchSelectors)
-=======
 app.post('/favorites', saveFavorite);
->>>>>>> 72d08070be4c891fab2486b774715d63728ff349
 
 // Helper Functions:
 
@@ -98,18 +94,19 @@ function saveFavorite(request, response){
 
   let { type, name, age, gender, size, city, state, description, photo } = request.body;
 
-  const SQL = `INSERT INTO favorites (type, name, age, gender, size, city, state, description, photo) VALUES('${type}','${name}', ${age}, ${gender}, '${size}','${city}', ${state}, ${description}, ${photo})RETURNING id;`;
+  const SQL = `INSERT INTO favorites (type, name, age, gender, size, city, state, description, photo) VALUES('${type}','${name}', '${age}', '${gender}', '${size}','${city}', '${state}', '${description}', '${photo}') RETURNING id;`;
 
-  let values = [type, name, age, gender, size, city, state, description, photo];
+  // let values = [type, name, age, gender, size, city, state, description, photo];
 
-  return client.query(SQL, values)
+  console.log(SQL);
+  return client.query(SQL)
     .then(sqlResults => { console.log('hello')
-      // response.redirect(`/favorites/${sqlResults.rows[0].id}`)
+    // TODO: change redirect to response.render so that user stays on the search page and sees another pet option. 
+      response.redirect(`/favorites/${sqlResults.rows[0].id}`)
     })
     .catch(error => handleError(error, response));
 
   // response.send(request.body);
-
 
 }
 
