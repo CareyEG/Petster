@@ -43,7 +43,6 @@ app.get('/details', renderDetailsPage);
 app.get('/aboutUs', renderAboutUsPage);
 app.post('/favorites', saveFavorite);
 
-
 // Helper Functions:
 
 
@@ -53,25 +52,26 @@ function renderHomepage(request, response) {
 
 
 function renderSearchPage(request, response) {
-  let URL = 'https://api.petfinder.com/v2/animals'
 
   let queryType = request.query.type;
-  let querySearch = request.query.city;
+  let queryZipCode = request.query.city;
+  console.log('SEARCH', queryZipCode)
   let queryDistance = request.query.travelDistance;
+  console.log('distance', request.query.travelDistance)
   let queryName = request.query.firstName;
 
   console.log(queryType)
 
-  // console.log(queryName)
+  let URL = `https://api.petfinder.com/v2/animals?type=${queryType}&location=${queryZipCode}&distance=5&limit=100&sort=random`
+
+
+
   return superagent.get(URL)
     .set('Authorization', `Bearer ${request.token}`)
     .then(apiResponse => {
       const petInstances = apiResponse.body.animals
-        .filter(petObject => petObject.type === queryType)
-        .map(cat => new Pet (cat))
-      console.log('!!!!!! petInstances: ',petInstances);
+        .map(pet => new Pet (pet))
       response.render('pages/search', { petResultAPI: petInstances });
-      // response.send(petInstances);
     })
     .catch(error => handleError(error));
 }
@@ -79,6 +79,7 @@ function renderSearchPage(request, response) {
 function Pet(query){
   // this.search_query = query;
   this.type = query.type;
+  this.id = query.id;
   this.name = query.name;
   this.age = query.age;
   this.gender = query.gender;
@@ -86,9 +87,10 @@ function Pet(query){
   this.city = query.contact.address.city;
   this.state = query.contact.address.state;
   this.description = query.description;
+  console.log(this.description)
   this.type = query.type;
+  // console.log('photos', query)
   this.photo = query.photos.length ? query.photos[0].large : 'http://www.placecage.com/200/200';
-  console.log(this.photo);
 }
 
 function saveFavorite(request, response){
@@ -114,6 +116,7 @@ function saveFavorite(request, response){
 function renderFavoritesPage(request, response) {
   let URL = 'https://api.petfinder.com/v2/animals'
   // console.log('query type', queryType)
+  
   return superagent.get(URL)
     .set('Authorization', `Bearer ${request.token}`)
     .then(apiResponse => {
