@@ -68,7 +68,7 @@ function renderSearchPage(request, response) {
   let queryName = request.query.firstName;
 
 
-  let URL = `https://api.petfinder.com/v2/animals?type=${queryType}&location=${queryZipCode}&distance=${queryDistance}&limit=100&sort=random`
+  let URL = `https://api.petfinder.com/v2/animals?type=${queryType}&location=${queryZipCode}&distance=${queryDistance}&limit=100&sort=random&status=adoptable`
 
 
 
@@ -94,13 +94,27 @@ function Pet(query){
   this.state = query.contact.address.state;
   this.description = query.description;
   this.type = query.type;
+  this.url = query.url;
+  this.photos = [];
+  // console.log(query.photos.length)
+  if(query.photos.length){
+    // console.log('hey')
+    for (let i = 0; i < query.photos.length; i++){
+      // console.log(`hi, ${i}`)
+      // console.log(query.photos[i].large)
+      this.photos.push(query.photos[i].large);
+      // this.photo[i] = query.photos[i].large;
+    }
+  }
+  // console.log(this.photos);
   this.photo = query.photos.length ? query.photos[0].large : 'http://www.placecage.com/200/200';
+  console.log('PHOTo', this.photo);
 }
 
 function saveFavorite(request, response){
   // response.send(request.body);
   let { type, name, age, gender, size, city, state, description, photo } = request.body;
-  console.log('request.body', request.body)
+  // console.log('request.body', request.body)
   // console.log('request.body at 0', request[0].body)
 
   const SQL = `INSERT INTO favorites (type, name, age, gender, size, city, state, description, photo) VALUES('${type}','${name}', '${age}', '${gender}', '${size}','${city}', '${state}', '${description}', '${photo}') RETURNING id;`;

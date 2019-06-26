@@ -49,6 +49,13 @@
         <input type="text" name="state" value="<%= item.state %>" required>  
         <input type="text" name="description" value="<%= item.description %>" required>  
         <input type="text" name="photo" value="<%= item.photo %>" required> 
+        <input type="text" name="url" value="<%= item.url %>" required>
+
+  
+        
+        <!-- <% item.photos.forEach ((photo, index) => { %>
+        <input type="text" name="photo<%=index %>" value="<%= photo[index] %> required> 
+        <% }) %> -->
         
       </div>
       <button class="searchButtons <%=index %>" id="btnSave">details</button>
