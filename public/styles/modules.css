@@ -127,7 +127,7 @@ select {
   }
   
 
-  #heart {
+  .heart {
     display: block;
     margin: 0 auto;
   }
