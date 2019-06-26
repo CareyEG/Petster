@@ -41,7 +41,11 @@ app.get('/search', getToken, renderSearchPage);
 app.get('/favorites', getToken, renderFavoritesPage);
 app.get('/details', renderDetailsPage);
 app.get('/aboutUs', renderAboutUsPage);
+<<<<<<< HEAD
 // app.post('/search', getSearchSelectors)
+=======
+app.post('/favorites', saveFavorite);
+>>>>>>> 72d08070be4c891fab2486b774715d63728ff349
 
 // Helper Functions:
 
@@ -85,17 +89,27 @@ function Pet(query){
   this.city = query.contact.address.city;
   this.state = query.contact.address.state;
   this.description = query.description;
-  this.description = query.description;
   this.type = query.type;
   this.photo = query.photos.length ? query.photos[0].large : 'http://www.placecage.com/200/200';
   console.log(this.photo);
 }
 
-function saveFavorite(petData){
+function saveFavorite(request, response){
 
-  console.log('!!!!!!! cacheSavedPetData query log ', petData);
+  let { type, name, age, gender, size, city, state, description, photo } = request.body;
 
-  // const insertSQL = `INSERT INTO favorites (type, name, age, gender, size, city, state, description, image_url) VALUES('${}','${}', ${}, ${}, '${}','${}', ${}, ${}, ${})RETURNING id;`;
+  const SQL = `INSERT INTO favorites (type, name, age, gender, size, city, state, description, photo) VALUES('${type}','${name}', ${age}, ${gender}, '${size}','${city}', ${state}, ${description}, ${photo})RETURNING id;`;
+
+  let values = [type, name, age, gender, size, city, state, description, photo];
+
+  return client.query(SQL, values)
+    .then(sqlResults => { console.log('hello')
+      // response.redirect(`/favorites/${sqlResults.rows[0].id}`)
+    })
+    .catch(error => handleError(error, response));
+
+  // response.send(request.body);
+
 
 }
 
