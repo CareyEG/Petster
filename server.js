@@ -9,6 +9,11 @@ const methodOverride = require('method-override');
 // Environment variables
 require('dotenv').config();
 
+// Database set up
+const client = new pg.Client(process.env.DATABASE_URL)
+client.connect();
+client.on('err', err => console.error(err));
+
 // Application Setup
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -26,8 +31,6 @@ app.use(methodOverride((request, response) => {
   }
 }));
 
-// TODO: Add Database Setup
-
 // Set the view engine for server-side templating
 app.set('view engine', 'ejs');
 
@@ -35,61 +38,103 @@ app.set('view engine', 'ejs');
 
 app.get('/', getToken, renderHomepage);
 app.get('/search', getToken, renderSearchPage);
-app.get('/favorites', renderFavoritesPage);
+app.get('/favorites', getToken, renderFavoritesPage);
 app.get('/details', renderDetailsPage);
+app.get('/aboutUs', renderAboutUsPage);
+app.post('/favorites', saveFavorite);
 
 // Helper Functions:
 
 
 function renderHomepage(request, response) {
-//   const URL = `https://api.petfinder.com/v2/oauth2/token?grant_type=client_credentials&client_id=${process.env.PET_FINDER_API_KEY}&client_secret=${process.env.PET_FINDER_SECRET}`
-//   superagent.get(URL)
-//     .then(data => console.log(data))
-//     .catch(error => handleError(error));
   response.render('pages/index');
 }
 
 
 function renderSearchPage(request, response) {
-  console.log(request.token);
 
-  // response.render('pages/search');
+  let queryType = request.query.type;
+  let queryZipCode = request.query.city;
+  console.log('SEARCH', queryZipCode)
+  let queryDistance = request.query.travelDistance;
+  console.log('distance', request.query.travelDistance)
+  let queryName = request.query.firstName;
 
-  let URL = 'https://api.petfinder.com/v2/animals'
+  console.log(queryType)
+
+  let URL = `https://api.petfinder.com/v2/animals?type=${queryType}&location=${queryZipCode}&distance=5&limit=100&sort=random`
+
+
+
   return superagent.get(URL)
     .set('Authorization', `Bearer ${request.token}`)
-    .then(data => {
-      // console.log('!!!!!',data.body.animals[0].name)
-      let petResult = new Pet(data.body.animals[0]);
-      console.log('PET RESULT!', petResult);
-      response.render('pages/search', { petResultAPI: petResult })
-      return data
-
+    .then(apiResponse => {
+      const petInstances = apiResponse.body.animals
+        .map(pet => new Pet (pet))
+      response.render('pages/search', { petResultAPI: petInstances });
     })
-    // .then(results => {
-    //   console.log(results)
-    //   response.render('pages/search', { petResultAPI: results })
-    // })
     .catch(error => handleError(error));
 }
 
 function Pet(query){
-  this.name = query.name;
-  console.log('query name', query.name)
-  this.description = query.description;
-  console.log('query description', query.description)
+  // this.search_query = query;
   this.type = query.type;
-  this.photo = query.photos[0].large;
-  console.log(this.photo);
+  this.id = query.id;
+  this.name = query.name;
+  this.age = query.age;
+  this.gender = query.gender;
+  this.size = query.size;
+  this.city = query.contact.address.city;
+  this.state = query.contact.address.state;
+  this.description = query.description;
+  console.log(this.description)
+  this.type = query.type;
+  // console.log('photos', query)
+  this.photo = query.photos.length ? query.photos[0].large : 'http://www.placecage.com/200/200';
 }
 
+function saveFavorite(request, response){
+
+  let { type, name, age, gender, size, city, state, description, photo } = request.body;
+
+  const SQL = `INSERT INTO favorites (type, name, age, gender, size, city, state, description, photo) VALUES('${type}','${name}', '${age}', '${gender}', '${size}','${city}', '${state}', '${description}', '${photo}') RETURNING id;`;
+
+  // let values = [type, name, age, gender, size, city, state, description, photo];
+
+  console.log(SQL);
+  return client.query(SQL)
+    .then(sqlResults => { console.log('hello')
+    // TODO: change redirect to response.render so that user stays on the search page and sees another pet option. 
+      response.redirect(`/favorites/${sqlResults.rows[0].id}`)
+    })
+    .catch(error => handleError(error, response));
+
+  // response.send(request.body);
+
+}
 
 function renderFavoritesPage(request, response) {
-  response.render('pages/favorites');
+  let URL = 'https://api.petfinder.com/v2/animals'
+  // console.log('query type', queryType)
+  
+  return superagent.get(URL)
+    .set('Authorization', `Bearer ${request.token}`)
+    .then(apiResponse => {
+      const petInstances = apiResponse.body.animals
+        .filter(petObject => petObject.type === 'Cat')
+        .map(cat => new Pet (cat))
+      response.render('pages/favorites', { petResultAPI: petInstances });
+      // response.send(petInstances);
+    })
+    .catch(error => handleError(error));
 }
 
 function renderDetailsPage(request, response) {
   response.render('pages/details');
+}
+
+function renderAboutUsPage(request, response) {
+  response.render('pages/aboutUs');
 }
 
 // Error Handling Function
@@ -97,15 +142,6 @@ function handleError(error, response) {
   console.error(error);
   response.status(500).send('Sorry, something went wrong')
 }
-
-//PetFinder API
-
-// function getPetsFromApi(request, response){
-//   let URL = 'https://api.petfinder.com/v2/animals'
-//   return superagent.get(URL)
-//     .set('Authorization', `Bearer ${request.token}`)
-// }
-
 
 function getToken(request, response, next) {
   const URL = `https://api.petfinder.com/v2/oauth2/token?grant_type=client_credentials&client_id=${process.env.PET_FINDER_API_KEY}&client_secret=${process.env.PET_FINDER_SECRET}`
@@ -120,5 +156,22 @@ function getToken(request, response, next) {
     })
     .catch(error => handleError(error));
 }
+
+// function getSearchSelectors(request, response){
+
+//   console.log('request', request.body)
+//   let queryType = request.body.type;
+//   let querySearch = request.body.city;
+//   let queryDistance = request.body.travelDistance;
+//   let queryName = request.body.firstName;
+
+//   console.log(queryType)
+
+//   return queryType;
+
+
+// }
+
+// Button Event Handler
 
 app.listen(PORT, () => console.log(`Listening on ${PORT}`));

@@ -1,21 +1,48 @@
 /* Code from https://www.w3schools.com/howto/howto_css_text_buttons.asp */
 
+/* //////////////////////////// */
+/* //////////Index///////////// */
+/* //////////////////////////// */
 
+/* Inputs */
+input {
+  width: 70%;
+  height: 20%;
+  margin-top: 5%;
+  margin-left: 15%;
+  font-size: 1em;
+  text-align: center;
+  color: black; 
+  margin-top: 10%;
+}
 
-/* Dropdown Button */
-.dropbtn {
-  background-color: #059ade;
+/* Button */
+#submit, .dropdown {
+ background-color: #2F3A70;
   color: white;
-  padding: 16px;
+  padding: .5em;
   font-size: 16px;
   border: none;
   border-radius: 5px;
-  width: 300px;
+  width: 70%; 
+  margin-left:15%;
+  margin-top: 40px;
+}
+
+/* Dropdown Button */
+select {
+  background-color: #2F3A70;
+  color: white;
+  padding: .5em;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  width: 70%;
 }
   
   /* The container <div> - needed to position the dropdown content */
   .dropdown {
-    margin-top: 40px;
+    margin-top: 10%;
     display: flex;
     justify-content: center;
   }
@@ -47,7 +74,7 @@
   .dropdown:hover .dropdown-content {display: block;}
   
   /* Change the background color of the dropdown button when the dropdown content is shown */
-  .dropdown:hover .dropbtn {background-color: #3e8e41;}
+  .dropdown:hover .dropbtn {background-color: #D9D9D9; color: black;}
 
   /* Submit Button */
   .btn {
@@ -58,8 +85,162 @@
     cursor: pointer;
     display: inline-block;
   }
+
+
   
   /* On mouse-over */
   .btn:hover {background: #eee;}
   
   .default {color: black;}
+/* //////////////////////////// */
+/* //////////Searches////////// */
+/* //////////////////////////// */
+
+.view-details {
+  display: none;
+}
+.hide-form-save-data {
+  display: none;
+}
+
+.loadPets, #btnSave {
+  display: none;
+}
+
+#hide-buttons {
+  display: none;
+}
+
+  /* Images */
+  .pet-image {
+    width: 600px;
+    max-width: 90%;
+    /* max-height:50%; */
+    margin: 10% 0;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 25px;
+    -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+    box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+  }
+  
+
+  .heart {
+    display: block;
+    margin: 0 auto;
+  }
+
+  #view-name {
+    font-size: 1.5em;
+    margin-bottom: .5em;
+    text-align: center;
+  }
+  
+  #view-description {
+    padding: .5em;
+    line-height: 1.5em;
+    font-size: 1em;
+  }
+
+  .searchButtons {
+    margin-top: 3%;
+    width: 40%;
+    height: 4%;
+    font-size: 1.5em;
+    color:white;
+    border: none;
+    border-radius: 5px;
+    -webkit-box-shadow: 4px 4px 2px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 4px 4px 2px 0px rgba(0,0,0,0.75);
+    box-shadow: 4px 4px 2px 0px rgba(0,0,0,0.75);
+  }
+
+  #btnPet{
+    margin-left: 6%;
+    background-color: #dc5858;
+  }
+
+  #btnNoPet {
+    margin-left: 8%;
+    background-color: #2F3A70;
+  }
+
+  .btnDetails {
+    margin-left: 30%;
+    background-color:#D9D9D9;
+    color: black;
+  }
+
+
+/* //////////////////////////// */
+/* //////////Favorites///////// */
+/* //////////////////////////// */
+
+.favorite-pets {
+  display: flex;
+  padding: 2em;
+  margin: 2em;
+}
+
+.favorite-pets-name {
+  font-weight: bold;
+}
+
+
+.favorite-pets img{
+  max-height: auto;
+  max-width: 100%;
+  display: flex;
+} 
+
+
+/* //////////////////////////// */
+/* //////////Details////////// */
+/* //////////////////////////// */
+
+#petInfo { 
+  text-align: center 
+}
+
+#map {
+  width: auto;
+  text-align: center;
+  float: right;
+}
+
+
+/* //////////////////////////// */
+/* //////////About Us////////// */
+/* //////////////////////////// */
+
+#about { 
+  width: auto;
+  text-align: center; 
+}
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+
+/* hr { 
+  display: block;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+  margin-left: auto;
+  margin-right: auto;
+  border-style: inset;
+  border-width: 1px;
+}  */
+
+.favoriteImg {
+  border-radius: 5px;
+}
+
+
+
+

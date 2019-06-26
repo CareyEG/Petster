@@ -1,6 +1,8 @@
 html {
   height: 100%;
-  background-image: linear-gradient(to bottom right, #2196F3, #8BC34A);
+  /* background-image: linear-gradient(to bottom right, #57adf1, #788866); */
+  background-color:#101A40;
+
 }
 
 body {
@@ -9,3 +11,11 @@ body {
   height: 100%;
 }
 
+*, body {
+  font-family: 'Indie Flower', cursive;
+  color: white;
+}
+
+main {
+  margin: 0 auto;
+  }
