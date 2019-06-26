@@ -12,6 +12,19 @@ require('dotenv').config();
 // Database set up
 const client = new pg.Client(process.env.DATABASE_URL)
 client.connect();
+client.query(`SELECT * FROM favorites`)
+  .catch(() => client.query(`CREATE TABLE favorites (
+    id SERIAL PRIMARY KEY,
+    type VARCHAR(255),
+    name VARCHAR(255),
+    age VARCHAR(255),
+    gender VARCHAR(255),
+    size VARCHAR(255),
+    city VARCHAR(255),
+    state VARCHAR(255),
+    description TEXT,
+    photo VARCHAR(255)
+  );`))
 client.on('err', err => console.error(err));
 
 // Application Setup
@@ -38,11 +51,12 @@ app.set('view engine', 'ejs');
 
 app.get('/', getToken, renderHomepage);
 app.get('/search', getToken, renderSearchPage);
-app.get('/favorites', getToken, renderFavoritesPage);
 app.get('/details', renderDetailsPage);
 app.get('/aboutUs', renderAboutUsPage);
 app.post('/favorites', saveFavorite);
 app.post('/details', showDetail)
+app.get('/favorites', renderSavedPets);
+app.delete('/favorites/:id', deleteFavorite);
 
 // Helper Functions:
 
@@ -126,17 +140,24 @@ function saveFavorite(request, response){
     .catch(error => handleError(error, response));
 }
 
-function renderFavoritesPage(request, response) {
-  let URL = 'https://api.petfinder.com/v2/animals'
-  return superagent.get(URL)
-    .set('Authorization', `Bearer ${request.token}`)
-    .then(apiResponse => {
-      const petInstances = apiResponse.body.animals
-        .filter(petObject => petObject.type === 'Cat')
-        .map(cat => new Pet (cat))
-      response.render('pages/favorites', { petResultAPI: petInstances });
+function renderSavedPets(request, response) {
+  let SQL = `SELECT * FROM favorites`;
+
+  return client.query(SQL)
+    .then(results => {
+      response.render('pages/favorites', {renderFavorites: results.rows})
+      // response.render('pages/favorites', {results: results.rows})
     })
-    .catch(error => handleError(error));
+    .catch(error => handleError(error, response));
+}
+
+function deleteFavorite(request, response) {
+  let SQL = 'DELETE FROM favorites WHERE id=$1;';
+  let values = [request.params.id];
+
+  return client.query(SQL, values)
+    .then(() => response.redirect('/favorites'))
+    .catch(err => handleError(err, response));
 }
 
 function renderDetailsPage(request, response) {
@@ -167,20 +188,6 @@ function getToken(request, response, next) {
     .catch(error => handleError(error));
 }
 
-// function getSearchSelectors(request, response){
-
-//   console.log('request', request.body)
-//   let queryType = request.body.type;
-//   let querySearch = request.body.city;
-//   let queryDistance = request.body.travelDistance;
-//   let queryName = request.body.firstName;
-
-//   console.log(queryType)
-
-//   return queryType;
-
-
-// }
 
 // Button Event Handler
 
