@@ -55,12 +55,9 @@ function renderSearchPage(request, response) {
 
   let queryType = request.query.type;
   let queryZipCode = request.query.city;
-  console.log('SEARCH', queryZipCode)
   let queryDistance = request.query.travelDistance;
-  console.log('distance', request.query.travelDistance)
   let queryName = request.query.firstName;
 
-  console.log(queryType)
 
   let URL = `https://api.petfinder.com/v2/animals?type=${queryType}&location=${queryZipCode}&distance=5&limit=100&sort=random`
 
@@ -87,36 +84,27 @@ function Pet(query){
   this.city = query.contact.address.city;
   this.state = query.contact.address.state;
   this.description = query.description;
-  console.log(this.description)
   this.type = query.type;
-  // console.log('photos', query)
   this.photo = query.photos.length ? query.photos[0].large : 'http://www.placecage.com/200/200';
 }
 
 function saveFavorite(request, response){
-
+  // response.send(request.body);
   let { type, name, age, gender, size, city, state, description, photo } = request.body;
+  console.log('request.body', request.body)
+  // console.log('request.body at 0', request[0].body)
 
   const SQL = `INSERT INTO favorites (type, name, age, gender, size, city, state, description, photo) VALUES('${type}','${name}', '${age}', '${gender}', '${size}','${city}', '${state}', '${description}', '${photo}') RETURNING id;`;
 
-  // let values = [type, name, age, gender, size, city, state, description, photo];
-
-  console.log(SQL);
   return client.query(SQL)
-    .then(sqlResults => { console.log('hello')
-    // TODO: change redirect to response.render so that user stays on the search page and sees another pet option. 
-      response.redirect(`/favorites/${sqlResults.rows[0].id}`)
+    .then(sqlResults => { //console.log('hello')
+      response.redirect(`/search`)
     })
     .catch(error => handleError(error, response));
-
-  // response.send(request.body);
-
 }
 
 function renderFavoritesPage(request, response) {
   let URL = 'https://api.petfinder.com/v2/animals'
-  // console.log('query type', queryType)
-  
   return superagent.get(URL)
     .set('Authorization', `Bearer ${request.token}`)
     .then(apiResponse => {
@@ -124,7 +112,6 @@ function renderFavoritesPage(request, response) {
         .filter(petObject => petObject.type === 'Cat')
         .map(cat => new Pet (cat))
       response.render('pages/favorites', { petResultAPI: petInstances });
-      // response.send(petInstances);
     })
     .catch(error => handleError(error));
 }

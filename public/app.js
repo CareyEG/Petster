@@ -12,7 +12,7 @@ $(`.${count}`).show();
 // submits the pet details form on heart click
 $('.heart').on('click', event => {
   console.log(' you clicked the submit!')
-  $('.petDetail').submit();
+  $(`.${count}Form`).submit();
 })
 
 // credit: https://stackoverflow.com/questions/15685708/determining-if-mouse-click-happened-in-left-or-right-half-of-div
