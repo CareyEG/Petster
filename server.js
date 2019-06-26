@@ -69,9 +69,9 @@ function renderSearchPage(request, response) {
   return superagent.get(URL)
     .set('Authorization', `Bearer ${request.token}`)
     .then(apiResponse => {
-      // console.log('!!!!!!!!', apiResponse.body.animals)
       const petInstances = apiResponse.body.animals
         .map(pet => new Pet (pet))
+      console.log('Length!!!!', petInstances.length)
       response.render('pages/search', { petResultAPI: petInstances });
     })
     .catch(error => handleError(error));
@@ -89,7 +89,7 @@ function Pet(query){
   this.state = query.contact.address.state;
   this.description = query.description;
   this.type = query.type;
-  console.log('photos', query)
+  // console.log('photos', query)
   this.photo = query.photos.length ? query.photos[0].large : 'http://www.placecage.com/200/200';
 }
 
@@ -116,6 +116,7 @@ function saveFavorite(request, response){
 function renderFavoritesPage(request, response) {
   let URL = 'https://api.petfinder.com/v2/animals'
   // console.log('query type', queryType)
+  console.log('you saved to DB')
   return superagent.get(URL)
     .set('Authorization', `Bearer ${request.token}`)
     .then(apiResponse => {

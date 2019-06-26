@@ -96,7 +96,7 @@ select {
 /* //////////Searches////////// */
 /* //////////////////////////// */
 
-.loadPets, .searchButtons {
+.loadPets, #btnSave {
   display: none;
 }
 
@@ -161,6 +161,9 @@ select {
 .hide-form-save-data {
   display: none;
 }
+
+/* Save to Database Heart */
+
 
 /* ////////////FAVORITES PAGE///////////// */
 

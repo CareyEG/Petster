@@ -19,7 +19,7 @@ $('#btnPet').on('click', function(){
 
 // console.log($('#pet-type-dropdown').val());
 
-// $('submit').on('click', event => {
-//   petType = $('#pet-type-dropdown').val();
-//   console.log(petType)
-// })
+$('#heart').on('click', event => {
+  console.log('you clicked!')
+  $('.petDetail').submit();
+})
