@@ -38,11 +38,12 @@ app.set('view engine', 'ejs');
 
 app.get('/', getToken, renderHomepage);
 app.get('/search', getToken, renderSearchPage);
-app.get('/favorites', getToken, renderFavoritesPage);
+// app.get('/favorites', getToken, renderFavoritesPage);
 app.get('/details', renderDetailsPage);
 app.get('/aboutUs', renderAboutUsPage);
 app.post('/favorites', saveFavorite);
 app.post('/details', showDetail)
+app.get('/favorites', renderSavedPets);
 
 // Helper Functions:
 
@@ -112,17 +113,28 @@ function saveFavorite(request, response){
     .catch(error => handleError(error, response));
 }
 
-function renderFavoritesPage(request, response) {
-  let URL = 'https://api.petfinder.com/v2/animals'
-  return superagent.get(URL)
-    .set('Authorization', `Bearer ${request.token}`)
-    .then(apiResponse => {
-      const petInstances = apiResponse.body.animals
-        .filter(petObject => petObject.type === 'Cat')
-        .map(cat => new Pet (cat))
-      response.render('pages/favorites', { petResultAPI: petInstances });
+// function renderFavoritesPage(request, response) {
+//   let URL = 'https://api.petfinder.com/v2/animals'
+//   return superagent.get(URL)
+//     .set('Authorization', `Bearer ${request.token}`)
+//     .then(apiResponse => {
+//       const petInstances = apiResponse.body.animals
+//         .filter(petObject => petObject.type === 'Cat')
+//         .map(cat => new Pet (cat))
+//       response.render('pages/favorites', { petResultAPI: petInstances });
+//     })
+//     .catch(error => handleError(error));
+// }
+
+function renderSavedPets(request, response) {
+  let SQL = `SELECT * FROM favorites`;
+
+  return client.query(SQL)
+    .then(results => {
+      response.render('pages/favorites', {renderFavorites: results.rows})
+      // response.render('pages/favorites', {results: results.rows})
     })
-    .catch(error => handleError(error));
+    .catch(error => handleError(error, response));
 }
 
 function renderDetailsPage(request, response) {
@@ -153,20 +165,6 @@ function getToken(request, response, next) {
     .catch(error => handleError(error));
 }
 
-// function getSearchSelectors(request, response){
-
-//   console.log('request', request.body)
-//   let queryType = request.body.type;
-//   let querySearch = request.body.city;
-//   let queryDistance = request.body.travelDistance;
-//   let queryName = request.body.firstName;
-
-//   console.log(queryType)
-
-//   return queryType;
-
-
-// }
 
 // Button Event Handler
 
