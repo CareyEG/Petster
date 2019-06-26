@@ -96,15 +96,18 @@ select {
 /* //////////Searches////////// */
 /* //////////////////////////// */
 
+.view-details {
+  display: none;
+}
+.hide-form-save-data {
+  display: none;
+}
+
 .loadPets, #btnSave {
   display: none;
 }
 
 #hide-buttons {
-  display: none;
-}
-
-.hide-form-save-data {
   display: none;
 }
 
@@ -171,19 +174,9 @@ select {
   }
 
 
-/* ////////////SEARCH PAGE///////////// */
-
-.view-details {
-  display: none;
-}
-.hide-form-save-data {
-  display: none;
-}
-
-/* Save to Database Heart */
-
-
-/* ////////////FAVORITES PAGE///////////// */
+/* //////////////////////////// */
+/* //////////Favorites///////// */
+/* //////////////////////////// */
 
 .favorite-pets {
   display: flex;
@@ -201,3 +194,10 @@ select {
   max-width: 100%;
   display: flex;
 } 
+
+.favoriteImg {
+  border-radius: 5px;
+}
+
+
+

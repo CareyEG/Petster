@@ -9,9 +9,6 @@ $('.btnDetails').on('click', function(){
 let count = 0;
 $(`.${count}`).show();
 
-
-
-
 // submits the pet details form on heart click
 $('#heart').on('click', event => {
   $('.petDetail').submit();

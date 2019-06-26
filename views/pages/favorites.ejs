@@ -1,7 +1,16 @@
 <%- include('../layout/head') %>
-<h1>Favorites</h1>
+<h1>Your Favorites</h1>
 <%- include('../layout/nav') %>
 
+<div class="favoritePet">
+  <img class="favoriteImg" src="https://placeimg.com/200/150/animals" alt="placeholder image">
+  <ul>
+    <li>Name</li>
+    <li>Age</li>
+    <li>Breed</li>
+    <li>Distance</li>
+  </ul>
+</div>
 <ul>
     <% petResultAPI.forEach(item => { %>
     <div class="favorite-pets">
