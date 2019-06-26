@@ -41,6 +41,7 @@ app.get('/search', getToken, renderSearchPage);
 app.get('/favorites', getToken, renderFavoritesPage);
 app.get('/details', renderDetailsPage);
 app.get('/aboutUs', renderAboutUsPage);
+// app.post('/search', getSearchSelectors)
 
 // Helper Functions:
 
@@ -52,11 +53,20 @@ function renderHomepage(request, response) {
 
 function renderSearchPage(request, response) {
   let URL = 'https://api.petfinder.com/v2/animals'
+
+  let queryType = request.query.type;
+  let querySearch = request.query.city;
+  let queryDistance = request.query.travelDistance;
+  let queryName = request.query.firstName;
+
+  console.log(queryType)
+
+  // console.log(queryName)
   return superagent.get(URL)
     .set('Authorization', `Bearer ${request.token}`)
     .then(apiResponse => {
       const petInstances = apiResponse.body.animals
-        .filter(petObject => petObject.type === 'Cat')
+        .filter(petObject => petObject.type === queryType)
         .map(cat => new Pet (cat))
       console.log('!!!!!! petInstances: ',petInstances);
       response.render('pages/search', { petResultAPI: petInstances });
@@ -77,7 +87,7 @@ function Pet(query){
   this.description = query.description;
   this.description = query.description;
   this.type = query.type;
-  this.photo = query.photos.length ? query.photos[0].large : 'placecage.com/200/200';
+  this.photo = query.photos.length ? query.photos[0].large : 'http://www.placecage.com/200/200';
   console.log(this.photo);
 }
 
@@ -91,6 +101,7 @@ function saveFavorite(petData){
 
 function renderFavoritesPage(request, response) {
   let URL = 'https://api.petfinder.com/v2/animals'
+  // console.log('query type', queryType)
   return superagent.get(URL)
     .set('Authorization', `Bearer ${request.token}`)
     .then(apiResponse => {
@@ -130,6 +141,21 @@ function getToken(request, response, next) {
     })
     .catch(error => handleError(error));
 }
+
+// function getSearchSelectors(request, response){
+
+//   console.log('request', request.body)
+//   let queryType = request.body.type;
+//   let querySearch = request.body.city;
+//   let queryDistance = request.body.travelDistance;
+//   let queryName = request.body.firstName;
+
+//   console.log(queryType)
+
+//   return queryType;
+
+
+// }
 
 // Button Event Handler
 

@@ -13,33 +13,24 @@
           <a href="#">Bunny</a>
         </div>
       </div> -->
-      <form>
-      <select class="dropdown" id="pet-type-dropdown">
+      <form id="user-form" action="/search" method="GET">
+      <select class="dropdown" name="type" id="pet-type-dropdown">
         <option class="dropbtn" value="default">Pick Your Pet Type</option>
-        <option value="Dog">Dog</option>
-        <option value="Cat">Cat</option>
-        <option value="Bunny">Bunny</option>
+        <option name="Dog" value="Dog">Dog</option>
+        <option name="Cat" value="Cat">Cat</option>
+        <option name="Bunny" value="Bunny">Bunny</option>
       </select>
 
-      <input type="text" name="firstname" placeholder="Enter Your City Here">
-
-      <!-- <div class="dropdown">
-        <button class="dropbtn">How Far Are You Willing to Travel?</button>
-        <div class="dropdown-content">
-          <a href="#">5 miles</a>
-          <a href="#">15 miles</a>
-          <a href="#">25+ miles</a>
-        </div> -->
-      <!-- </div> -->
+      <input type="text" name="city" placeholder="Enter Your City Here">
       
-      <select class="dropdown">
-        <option class="dropbtn" value="default">How Far Are YOu Willing to Travel?</option>
-        <option>5 Miles</option>
-        <option>15 miles</option>
-        <option>25+ miles</option>
+      <select class="dropdown" name="travelDistance" id="travel-distance-dropdown">
+        <option class="dropbtn" value="default">How Far Are You Willing to Travel?</option>
+        <option name="5-miles" value="5-miles">5 Miles</option>
+        <option name="15-miles" value="15-miles">15 miles</option>
+        <option name="25+-miles" value="25+-miles">25+ miles</option>
       </select>
 
-        <input type="text" name="firstname" placeholder="Enter Your Username Here">
+        <input type="text" name="firstName" placeholder="Enter Your Username Here">
 
       <button id="submit" onclick="window.location.href='/search'">Submit</button>
     </form>
