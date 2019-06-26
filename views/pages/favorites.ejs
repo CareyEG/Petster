@@ -2,23 +2,15 @@
 <h1>Your Favorites</h1>
 <%- include('../layout/nav') %>
 
-<div class="favoritePet">
-  <img class="favoriteImg" src="https://placeimg.com/200/150/animals" alt="placeholder image">
-  <ul>
-    <li>Name</li>
-    <li>Age</li>
-    <li>Breed</li>
-    <li>Distance</li>
-  </ul>
-  <button id="btnMenu"></button>
-</div>
-
 <ul>
-    <% petResultAPI.forEach(item => { %>
+    <% renderFavorites.forEach(item => { %>
     <div class="favorite-pets">
         <li><img src="<%=item.photo%>"></li>
         <li class="favorite-pets-name"><h4><%= item.name %></h4></li>
+        <li class="favorite-pets-age"><h4><%= item.age %></h4></li>
         <li class="favorite-pets-description"><h4><%= item.description %></h4></li>
+        <button id="btnMenu"></button>
+        <button id="btnMenu"></button>
     </div>
     <% }) %>
 </ul>
