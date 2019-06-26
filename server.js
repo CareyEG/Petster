@@ -84,18 +84,19 @@ function saveFavorite(request, response){
 
   let { type, name, age, gender, size, city, state, description, photo } = request.body;
 
-  const SQL = `INSERT INTO favorites (type, name, age, gender, size, city, state, description, photo) VALUES('${type}','${name}', ${age}, ${gender}, '${size}','${city}', ${state}, ${description}, ${photo})RETURNING id;`;
+  const SQL = `INSERT INTO favorites (type, name, age, gender, size, city, state, description, photo) VALUES('${type}','${name}', '${age}', '${gender}', '${size}','${city}', '${state}', '${description}', '${photo}') RETURNING id;`;
 
-  let values = [type, name, age, gender, size, city, state, description, photo];
+  // let values = [type, name, age, gender, size, city, state, description, photo];
 
-  return client.query(SQL, values)
+  console.log(SQL);
+  return client.query(SQL)
     .then(sqlResults => { console.log('hello')
-      // response.redirect(`/favorites/${sqlResults.rows[0].id}`)
+    // TODO: change redirect to response.render so that user stays on the search page and sees another pet option. 
+      response.redirect(`/favorites/${sqlResults.rows[0].id}`)
     })
     .catch(error => handleError(error, response));
 
   // response.send(request.body);
-
 
 }
 
