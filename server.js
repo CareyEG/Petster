@@ -89,7 +89,15 @@ function renderSearchPage(request, response) {
   return superagent.get(URL)
     .set('Authorization', `Bearer ${request.token}`)
     .then(apiResponse => {
+      console.log(apiResponse.body.animals)
       const petInstances = apiResponse.body.animals
+        // .filter(petData => {
+        //   if (petData.name.includes('adopted') || petData.name.includes('adoption')){
+        //     return false;
+        //   } else {
+        //     return true;
+        //   }
+        // })
         .map(pet => new Pet (pet))
       response.render('pages/search', { petResultAPI: petInstances });
     })
@@ -107,8 +115,11 @@ function Pet(query){
   this.city = query.contact.address.city;
   this.state = query.contact.address.state;
   this.description = query.description;
+  console.log(this.description)
   this.type = query.type;
   this.url = query.url;
+  this.primaryBreed = query.breeds.primary;
+  this.secondaryBreed = query.breeds.secondary;
   this.photos = [];
   // console.log(query.photos.length)
   if(query.photos.length){
@@ -122,7 +133,6 @@ function Pet(query){
   }
   // console.log(this.photos);
   this.photo = query.photos.length ? query.photos[0].large : 'http://www.placecage.com/200/200';
-  console.log('PHOTo', this.photo);
 }
 
 function saveFavorite(request, response){
