@@ -96,6 +96,12 @@ select {
 /* //////////Searches////////// */
 /* //////////////////////////// */
 
+.ranOutOfPets {
+
+  display: none;
+  margin: 1em;
+  font-size: 2em;
+}
 .view-details {
   display: none;
 }
