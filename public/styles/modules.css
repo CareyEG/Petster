@@ -96,10 +96,19 @@ select {
 /* //////////Searches////////// */
 /* //////////////////////////// */
 
+
+.ranOutOfPets {
+
+  display: none;
+  margin: 1em;
+  font-size: 2em;
+}
+
 .image-fade {
   -webkit-transform:rotate(360deg);
   -webkit-transition-duration: 1s;
 }
+
 
 .view-details {
   display: none;
