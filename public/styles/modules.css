@@ -14,21 +14,41 @@ input {
   font-size: 1.2em;
   /* text-align: center; */
   color: black; 
-  margin-top: 10%;
+  margin-top: 7%;
 }
 
 /* Button */
-#submit, .dropdown {
+#submit, .dropdown, #btnSave, #delete-button, #adopt-button, .about-us-names {
  background-color: #2F3A70;
   color: white;
   padding: .5em;
-  font-size: 16px;
+  font-size: 1.1em;
   border: none;
   border-radius: 5px;
   width: 72%; 
   margin-left:15%;
-  margin-top: 40px;
+  margin-top: 7%;
+  /* text-decoration: none; */
 }
+
+#submit:hover{
+  background-color: #D9D9D9;
+  color: #2F3A70;
+  font-weight: bold;
+}
+
+#btnSave:hover {
+  background-color: #D9D9D9;
+  color: #2F3A70;
+  font-weight: bold;
+}
+
+#delete-button:hover {
+  background-color: #D9D9D9;
+  color: #2F3A70;
+  font-weight: bold;
+}
+
 
 /* Dropdown Button */
 select {
@@ -43,7 +63,7 @@ select {
   
   /* The container <div> - needed to position the dropdown content */
   .dropdown {
-    margin-top: 10%;
+    margin-top: 7%;
     display: flex;
     justify-content: center;
   }
@@ -86,8 +106,6 @@ select {
     cursor: pointer;
     display: inline-block;
   }
-
-
   
   /* On mouse-over */
   .btn:hover {background: #eee;}
@@ -99,10 +117,21 @@ select {
 
 
 .ranOutOfPets {
-
+  background-color: #D9D9D9;
+  line-height: 1.5em;
+  border-radius: 8px;
   display: none;
-  margin: 1em;
-  font-size: 2em;
+  margin: 0 auto;
+  margin-top: 8%;
+  text-align: center;
+  width: 11em;
+  font-size: 1.5em;
+  padding: 0.5em;
+  box-shadow: 7px 7px 7px 0px rgba(0,0,0,0.50);
+}
+
+#out-of-pets {
+  color: #101A40;
 }
 
 .image-fade {
@@ -122,30 +151,46 @@ select {
   display: none;
 }
 
+
+
+.loadPets {
+  height: 78%;
+  position: relative;
+}
+
 #hide-buttons {
   display: none;
 }
 
   /* Images */
+  #save-data{
+    position: absolute;
+    bottom: 0;
+    margin-left: 33%;
+  }
+  
   .pet-image {
-    width: 600px;
-    max-width: 90%;
-    /* max-height:50%; */
-    margin: 10% 0;
+    max-width: 95%;
+    height:100%;
+    margin: 3% 0;
     display: block;
     margin-left: auto;
     margin-right: auto;
-    border-radius: 25px;
+    border-radius: 8px;
     -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
     -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
-    box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+    box-shadow: 7px 7px 7px 0px rgba(0,0,0,0.50);
   }
   
+  #btnSave{
+    width: 50px;
+    height: 50px
+  }
 
   .heart {
     position: absolute;
-    margin-top: 450px;
-    margin-left: 500px;
+    bottom: 0;
+    margin-left: 54%;
   }
 
   #view-name {
@@ -160,7 +205,7 @@ select {
     font-size: 1em;
   }
 
-  .searchButtons {
+  /* .searchButtons {
     margin-top: 3%;
     width: 40%;
     height: 4%;
@@ -171,7 +216,17 @@ select {
     -webkit-box-shadow: 4px 4px 2px 0px rgba(0,0,0,0.75);
     -moz-box-shadow: 4px 4px 2px 0px rgba(0,0,0,0.75);
     box-shadow: 4px 4px 2px 0px rgba(0,0,0,0.75);
+  } */
+
+  #btnSave {
+    margin-top: 3%;
   }
+
+  /* #btnSave:hover {
+    background-color: #D9D9D9;
+    color: #2F3A70;
+    font-weight: bold;
+  } */
 
   #btnPet{
     margin-left: 6%;
@@ -195,22 +250,44 @@ select {
 /* //////////////////////////// */
 
 .favorite-pets {
-  display: flex;
-  padding: 2em;
-  margin: 2em;
+  /* display: flex; */
+  padding-left: 2em;
+  padding-right: 2em;
+  /* padding-bottom: 2em; */
+  /* margin: 2em; */
 }
 
 .favorite-pets-name {
   font-weight: bold;
 }
 
-
 .favorite-pets img{
+  width: 600px;
+  max-width: 90%;
+  /* max-height:50%; */
+  margin: 6% 0;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 8px;
+  -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+  box-shadow: 7px 7px 7px 0px rgba(0,0,0,0.50);
   max-height: auto;
   max-width: 100%;
   display: flex;
 } 
 
+#delete-button {
+  /* width: 14em; */
+  /* margin: 0 auto; */
+  margin-top: 7%;
+}
+
+hr {
+  margin-top: 5%;
+  margin-bottom: 5%;
+}
 
 /* //////////////////////////// */
 /* //////////Details////////// */
@@ -245,6 +322,10 @@ select {
   margin: 0;
 }
 
+#adopt-button {
+  margin: 8%;
+}
+
 
 /* //////////////////////////// */
 /* //////////About Us////////// */
@@ -256,8 +337,12 @@ select {
 }
 
 #about { 
-  width: auto;
-  text-align: center; 
+  width: 18em;
+  text-align: left;
+  margin: 0 auto;
+  line-height: 1.3em;
+  margin-bottom: 5%;
+  margin-top: 5%;
 }
 
 .center {
@@ -265,6 +350,7 @@ select {
   margin-left: auto;
   margin-right: auto;
   width: 50%;
+  margin-bottom: 5%;
 }
 
 /* hr { 
@@ -281,6 +367,25 @@ select {
   border-radius: 5px;
 }
 
+.about-us-names {
+  margin: 0 auto;
+}
 
+a:hover {
+  text-decoration: none;
+}
 
+.ranOutOfPets {
+  background-color: #2F3A70;
+  line-height: 1.8em;
+  border-radius: 8px;
+  margin: 0 auto;
+  margin-top: 8%;
+  text-align: center;
+  width: 11em;
+  font-size: 1.4em;
+  padding: 0.7em;
+  padding-top: 2em;
+  padding-bottom: 2em;
+  box-shadow: 7px 7px 7px 0px rgba(0,0,0,0.50);
 
