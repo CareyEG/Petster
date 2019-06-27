@@ -4,6 +4,7 @@ $('.detailsButton').on('click', function(){
   console.log('you clicked!')
   $('.view-details').show();
   $('.detailsButton').hide();
+  $("html, body").animate({ scrollTop: $(document).height() }, "slow");
 });
 
 
