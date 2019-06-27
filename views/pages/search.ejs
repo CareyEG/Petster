@@ -23,12 +23,17 @@
         <ul class="<%=index %>">
       
         <div class="view-details">
-          <li><h4 id="view-name"><%= item.name %></h4></li>
-          <li><h4 id="view-name"><%= item.age %></h4></li>
-          <li><h4 id="view-name"><%= item.gender %></h4></li>
-          <li><h4 id="view-name"><%= item.primaryBreed %></h4></li>
-          <li><h4 id="view-name"><%= item.city %>, <%= item.state %></h4></li>
-          <li><h4 id="view-description"><%= item.description %></h4></li>
+          <li><h4 id="petName" class="view-name"><%= item.name %></h4></li>
+          <p class="petDescription">Age</p>
+          <li><h4 class="view-name"><%= item.age %></h4></li>
+          <p class="petDescription">Gender</p>
+          <li><h4 class="view-name"><%= item.gender %></h4></li>
+          <p class="petDescription">Breed</p>
+          <li><h4 class="view-name"><%= item.primaryBreed %></h4></li>
+          <p class="petDescription">Location</p>
+          <li><h4 class="view-name"><%= item.city %>, <%= item.state %></h4></li>
+          <p class="petDescription">Description</p>
+          <li><h4 class="view-description"><%= item.description %></h4></li>
         </div>
 
       </ul>
