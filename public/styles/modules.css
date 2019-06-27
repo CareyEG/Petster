@@ -18,7 +18,7 @@ input {
 }
 
 /* Button */
-#submit, .dropdown, #btnSave, #delete-button, #adopt-button, .about-us-names {
+#submit, .dropdown, #delete-button, #adopt-button, .about-us-names {
  background-color: #2F3A70;
   color: white;
   padding: .5em;
@@ -37,11 +37,11 @@ input {
   font-weight: bold;
 }
 
-#btnSave:hover {
+/* #btnSave:hover {
   background-color: #D9D9D9;
   color: #2F3A70;
   font-weight: bold;
-}
+} */
 
 #delete-button:hover {
   background-color: #D9D9D9;
@@ -154,7 +154,7 @@ select {
 
 
 .loadPets {
-  height: 78%;
+  height: 73%;
   position: relative;
 }
 
@@ -166,17 +166,17 @@ select {
   #save-data{
     position: fixed;
     bottom: 1%;
-    margin-left: 17%;
+    margin-left: 74%;
   }
   
 .flexPet {
-  height:100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #000000;
-  border: 1px solid whitesmoke;
-  border-radius: 9px;
+    height: 100%;
+    margin-top: 5%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #000000;
+    border-radius: 9px;
 }
 
   .pet-image {
@@ -230,6 +230,7 @@ select {
 
   #btnSave {
     margin-top: 3%;
+    margin-left: 30%;
   }
 
   /* #btnSave:hover {
