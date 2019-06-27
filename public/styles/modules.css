@@ -96,6 +96,11 @@ select {
 /* //////////Searches////////// */
 /* //////////////////////////// */
 
+.image-fade {
+  -webkit-transform:rotate(360deg);
+  -webkit-transition-duration: 1s;
+}
+
 .view-details {
   display: none;
 }
@@ -128,8 +133,9 @@ select {
   
 
   .heart {
-    display: block;
-    margin: 0 auto;
+    position: absolute;
+    margin-top: 450px;
+    margin-left: 500px;
   }
 
   #view-name {
