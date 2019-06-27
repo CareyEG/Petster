@@ -1,15 +1,13 @@
 
 // handles details click on search page
-$('.btnDetails').on('click', function(){
+$('.detailsButton').on('click', function(){
   console.log('you clicked!')
   $('.view-details').show();
-  $('.btnDetails').hide();
+  $('.detailsButton').hide();
 });
 
 
-$('#go-back-search').on('click', function(){
-  console.log('you clicked the back search!');
-});
+
 
 
 let count = 0;
