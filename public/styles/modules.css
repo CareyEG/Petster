@@ -151,16 +151,28 @@ select {
   display: none;
 }
 
+
+
+.loadPets {
+  height: 78%;
+  position: relative;
+}
+
 #hide-buttons {
   display: none;
 }
 
   /* Images */
+  #save-data{
+    position: absolute;
+    bottom: 0;
+    margin-left: 33%;
+  }
+  
   .pet-image {
-    width: 600px;
-    max-width: 90%;
-    /* max-height:50%; */
-    margin: 6% 0;
+    max-width: 95%;
+    height:100%;
+    margin: 3% 0;
     display: block;
     margin-left: auto;
     margin-right: auto;
@@ -170,11 +182,15 @@ select {
     box-shadow: 7px 7px 7px 0px rgba(0,0,0,0.50);
   }
   
+  #btnSave{
+    width: 50px;
+    height: 50px
+  }
 
   .heart {
     position: absolute;
-    margin-top: 450px;
-    margin-left: 500px;
+    bottom: 0;
+    margin-left: 54%;
   }
 
   #view-name {
