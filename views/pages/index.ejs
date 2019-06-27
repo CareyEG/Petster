@@ -1,7 +1,9 @@
 <%- include('../layout/head') %>
 <body>
-  <h1>Welcome to petster!</h1>
+
   <%- include('../layout/nav') %>
+
+  <h1>petster</h1>
 
   <h2>Fill out the info for your perfect pet below</h2>
     <main>
@@ -17,7 +19,7 @@
       <input type="number" name="city" placeholder="Enter Your Zip Code" value="98103">
       
       <select class="dropdown" name="travelDistance" id="travel-distance-dropdown">
-        <option name="15-miles" value="15" class="dropbtn" >How Far Are You Willing to Travel?</option>
+        <option name="15-miles" value="15" class="dropbtn" >Distance from my location</option>
         <option name="5-miles" value="5">5 Miles</option>
         <option name="15-miles" value="15">15 Miles</option>
         <option name="25+-miles" value="25">25 miles</option>
