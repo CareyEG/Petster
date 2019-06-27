@@ -11,9 +11,12 @@
   <div class="loadPets <%=index %>">
 
         <img class="heart" src="/img/like.png">
-        <img class="pet-image" src="<%=item.photo%>">
-    
-      <ul class="<%=index %>">
+        
+        <div class="flexPet">
+          <img class="pet-image" src="<%=item.photo%>">
+        </div>
+      
+        <ul class="<%=index %>">
       
         <div class="view-details">
           <li><h4 id="view-name"><%= item.name %></h4></li>

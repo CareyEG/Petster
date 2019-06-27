@@ -164,16 +164,26 @@ select {
 
   /* Images */
   #save-data{
-    position: absolute;
-    bottom: 0;
-    margin-left: 33%;
+    position: fixed;
+    bottom: 1%;
+    margin-left: 17%;
   }
   
+.flexPet {
+  height:100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #000000;
+  border: 1px solid whitesmoke;
+  border-radius: 9px;
+}
+
   .pet-image {
-    max-width: 95%;
-    height:100%;
-    margin: 3% 0;
-    display: block;
+    display: flex;
+    width: 95%;
+    height: auto;
+    max-height: 85%;
     margin-left: auto;
     margin-right: auto;
     border-radius: 8px;
@@ -188,10 +198,10 @@ select {
   }
 
   .heart {
-    position: absolute;
-    bottom: 0;
-    margin-left: 54%;
-  }
+    position: fixed;
+    bottom: 1%;
+    margin-left: 70%;
+}
 
   #view-name {
     font-size: 1.5em;
