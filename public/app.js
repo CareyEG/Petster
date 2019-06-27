@@ -25,7 +25,7 @@ $('.heart').on('click', event => {
 // credit: https://stackoverflow.com/questions/15685708/determining-if-mouse-click-happened-in-left-or-right-half-of-div
 
 // handles left and right click on img
-$('.pet-image').click(function(event){
+$(`.pet-image`).click(function(event){
   var x = event.pageX - $(this).offset().left
 
   if (x > $(this).width()/2) {
