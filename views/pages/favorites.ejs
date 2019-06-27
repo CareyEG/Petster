@@ -20,8 +20,14 @@
         <form class="unlist" action="/favorites/<%= item.id %>" method="post">
           <input type="hidden" name="_method" value="delete" />
           <button id="delete-button">Remove From Favorites</button>
+          <!-- <button id="delete-button">Details</button> -->
           <hr width="67%">
         </form>
+
+        <form class="unlist" action="/details/<%= item.id %>" method="get">
+          <button id="delete-button">Details</button>
+        </form>
+
     </div>
     <% }) %>
 </ul>

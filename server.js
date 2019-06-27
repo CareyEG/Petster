@@ -51,22 +51,32 @@ app.set('view engine', 'ejs');
 
 app.get('/', getToken, renderHomepage);
 app.get('/search', getToken, renderSearchPage);
-app.get('/details', renderDetailsPage);
+app.get('/details/:id', renderDetailsPageFromFav);
 app.get('/aboutUs', renderAboutUsPage);
 app.post('/favorites', saveFavorite);
-app.post('/details', showDetail)
+app.post('/details', showDetailFromSearch)
 app.get('/favorites', renderSavedPets);
 app.delete('/favorites/:id', deleteFavorite);
 
 // Helper Functions:
 
+function renderDetailsPageFromFav(request, response) {
+  let SQL = 'SELECT * FROM favorites WHERE id=$1;';
+  let values = [request.params.id];
+  console.log('rendering details', values[0]);
+  return client.query(SQL, values)
+    .then(results => {
+      console.log(results);
+      response.render('pages/details', {petDetailsResponse: results.rows[0]})
+    })
+    .catch(err => handleError(err, response));
+}
 
-function showDetail(request, response) {
+function showDetailFromSearch(request, response) {
   const detailsResponse = request.body;
   // response.send(request.body);
   // response.render('pages/details');
   response.render('pages/details', { petDetailsResponse: detailsResponse });
-  
 }
 
 function renderHomepage(request, response) {
@@ -168,10 +178,6 @@ function deleteFavorite(request, response) {
   return client.query(SQL, values)
     .then(() => response.redirect('/favorites'))
     .catch(err => handleError(err, response));
-}
-
-function renderDetailsPage(request, response) {
-  response.render('pages/details');
 }
 
 function renderAboutUsPage(request, response) {
