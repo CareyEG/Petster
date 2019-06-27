@@ -12,6 +12,19 @@ require('dotenv').config();
 // Database set up
 const client = new pg.Client(process.env.DATABASE_URL)
 client.connect();
+client.query(`SELECT * FROM favorites`)
+  .catch(() => client.query(`CREATE TABLE favorites (
+    id SERIAL PRIMARY KEY,
+    type VARCHAR(255),
+    name VARCHAR(255),
+    age VARCHAR(255),
+    gender VARCHAR(255),
+    size VARCHAR(255),
+    city VARCHAR(255),
+    state VARCHAR(255),
+    description TEXT,
+    photo VARCHAR(255)
+  );`))
 client.on('err', err => console.error(err));
 
 // Application Setup
@@ -38,13 +51,23 @@ app.set('view engine', 'ejs');
 
 app.get('/', getToken, renderHomepage);
 app.get('/search', getToken, renderSearchPage);
-app.get('/favorites', getToken, renderFavoritesPage);
 app.get('/details', renderDetailsPage);
 app.get('/aboutUs', renderAboutUsPage);
 app.post('/favorites', saveFavorite);
+app.post('/details', showDetail)
+app.get('/favorites', renderSavedPets);
+app.delete('/favorites/:id', deleteFavorite);
 
 // Helper Functions:
 
+
+function showDetail(request, response) {
+  const detailsResponse = request.body;
+  // response.send(request.body);
+  // response.render('pages/details');
+  response.render('pages/details', { petDetailsResponse: detailsResponse });
+  
+}
 
 function renderHomepage(request, response) {
   response.render('pages/index');
@@ -55,14 +78,11 @@ function renderSearchPage(request, response) {
 
   let queryType = request.query.type;
   let queryZipCode = request.query.city;
-  console.log('SEARCH', queryZipCode)
   let queryDistance = request.query.travelDistance;
-  console.log('distance', request.query.travelDistance)
   let queryName = request.query.firstName;
 
-  console.log(queryType)
 
-  let URL = `https://api.petfinder.com/v2/animals?type=${queryType}&location=${queryZipCode}&distance=5&limit=100&sort=random`
+  let URL = `https://api.petfinder.com/v2/animals?type=${queryType}&location=${queryZipCode}&distance=${queryDistance}&limit=100&sort=random&status=adoptable`
 
 
 
@@ -87,46 +107,57 @@ function Pet(query){
   this.city = query.contact.address.city;
   this.state = query.contact.address.state;
   this.description = query.description;
-  console.log(this.description)
   this.type = query.type;
-  // console.log('photos', query)
+  this.url = query.url;
+  this.photos = [];
+  // console.log(query.photos.length)
+  if(query.photos.length){
+    // console.log('hey')
+    for (let i = 0; i < query.photos.length; i++){
+      // console.log(`hi, ${i}`)
+      // console.log(query.photos[i].large)
+      this.photos.push(query.photos[i].large);
+      // this.photo[i] = query.photos[i].large;
+    }
+  }
+  // console.log(this.photos);
   this.photo = query.photos.length ? query.photos[0].large : 'http://www.placecage.com/200/200';
+  console.log('PHOTo', this.photo);
 }
 
 function saveFavorite(request, response){
-
+  // response.send(request.body);
   let { type, name, age, gender, size, city, state, description, photo } = request.body;
+  // console.log('request.body', request.body)
+  // console.log('request.body at 0', request[0].body)
 
   const SQL = `INSERT INTO favorites (type, name, age, gender, size, city, state, description, photo) VALUES('${type}','${name}', '${age}', '${gender}', '${size}','${city}', '${state}', '${description}', '${photo}') RETURNING id;`;
 
-  // let values = [type, name, age, gender, size, city, state, description, photo];
-
-  console.log(SQL);
   return client.query(SQL)
-    .then(sqlResults => { console.log('hello')
-    // TODO: change redirect to response.render so that user stays on the search page and sees another pet option. 
-      response.redirect(`/favorites/${sqlResults.rows[0].id}`)
+    .then(sqlResults => { //console.log('hello')
+      response.redirect(`/search`)
     })
     .catch(error => handleError(error, response));
-
-  // response.send(request.body);
-
 }
 
-function renderFavoritesPage(request, response) {
-  let URL = 'https://api.petfinder.com/v2/animals'
-  // console.log('query type', queryType)
-  
-  return superagent.get(URL)
-    .set('Authorization', `Bearer ${request.token}`)
-    .then(apiResponse => {
-      const petInstances = apiResponse.body.animals
-        .filter(petObject => petObject.type === 'Cat')
-        .map(cat => new Pet (cat))
-      response.render('pages/favorites', { petResultAPI: petInstances });
-      // response.send(petInstances);
+function renderSavedPets(request, response) {
+  let SQL = `SELECT * FROM favorites`;
+
+  return client.query(SQL)
+    .then(results => {
+      response.render('pages/favorites', {renderFavorites: results.rows})
+      // response.render('pages/favorites', {results: results.rows})
     })
-    .catch(error => handleError(error));
+    .catch(error => handleError(error, response));
+}
+
+function deleteFavorite(request, response) {
+  let SQL = 'DELETE FROM favorites WHERE id=$1;';
+  let values = [request.params.id];
+
+  return client.query(SQL, values)
+    .then(() => response.redirect('/favorites'))
+    .catch(err => handleError(err, response));
 }
 
 function renderDetailsPage(request, response) {
@@ -157,20 +188,6 @@ function getToken(request, response, next) {
     .catch(error => handleError(error));
 }
 
-// function getSearchSelectors(request, response){
-
-//   console.log('request', request.body)
-//   let queryType = request.body.type;
-//   let querySearch = request.body.city;
-//   let queryDistance = request.body.travelDistance;
-//   let queryName = request.body.firstName;
-
-//   console.log(queryType)
-
-//   return queryType;
-
-
-// }
 
 // Button Event Handler
 

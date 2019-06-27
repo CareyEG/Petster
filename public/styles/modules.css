@@ -6,12 +6,13 @@
 
 /* Inputs */
 input {
-  width: 70%;
+  width: 68%;
   height: 20%;
+  padding-left: 2%;
   margin-top: 5%;
   margin-left: 15%;
-  font-size: 1em;
-  text-align: center;
+  font-size: 1.2em;
+  /* text-align: center; */
   color: black; 
   margin-top: 10%;
 }
@@ -24,7 +25,7 @@ input {
   font-size: 16px;
   border: none;
   border-radius: 5px;
-  width: 70%; 
+  width: 72%; 
   margin-left:15%;
   margin-top: 40px;
 }
@@ -96,6 +97,20 @@ select {
 /* //////////Searches////////// */
 /* //////////////////////////// */
 
+
+.ranOutOfPets {
+
+  display: none;
+  margin: 1em;
+  font-size: 2em;
+}
+
+.image-fade {
+  -webkit-transform:rotate(360deg);
+  -webkit-transition-duration: 1s;
+}
+
+
 .view-details {
   display: none;
 }
@@ -128,8 +143,9 @@ select {
   
 
   .heart {
-    display: block;
-    margin: 0 auto;
+    position: absolute;
+    margin-top: 450px;
+    margin-left: 500px;
   }
 
   #view-name {
@@ -201,7 +217,8 @@ select {
 /* //////////////////////////// */
 
 #petInfo { 
-  text-align: center 
+  display: flex;
+  flex-wrap: wrap;
 }
 
 #map {
@@ -210,10 +227,33 @@ select {
   float: right;
 }
 
+#details-pet-image {
+  width: 600px;
+  max-width: 90%;
+  /* max-height:50%; */
+  margin: 10% 0;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 25px;
+  -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+  box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+}
+
+#pet-details h1 {
+  margin: 0;
+}
+
 
 /* //////////////////////////// */
 /* //////////About Us////////// */
 /* //////////////////////////// */
+
+
+#pet-details {
+  text-align: center;
+}
 
 #about { 
   width: auto;

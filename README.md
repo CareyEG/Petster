@@ -7,10 +7,10 @@ dotenv, pg, express, superagent, methodOverride, ejs
 
 ## Style Guide
 
-Color Palette:
+Color Palette: #101A40, #2F3A70, #f1f1f1, #D9D9D9, #dc5858 
 
-font-family:
-font-family:
+font-family: 'Poppins', sans-serif;
+font-family: 'Lobster', cursive;
 
 ## Credit
 
@@ -25,8 +25,6 @@ Icons made by <a href="https://www.flaticon.com/authors/smashicons" title="Smash
 
 ## Version 
 1.0.0 
-
-## Overview
 
 ## Getting Started
 A user will need to have a link to our deployed site. 
