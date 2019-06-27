@@ -17,6 +17,7 @@ $(`.${count}`).show();
 
 // submits the pet details form on heart click
 $('.heart').on('click', event => {
+  $('.heart').toggleClass('image-fade');
   console.log(' you clicked the submit!')
   $(`.${count}Form`).submit();
 })
