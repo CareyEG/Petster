@@ -2,16 +2,18 @@ h1 {
   font-family: 'Lobster', cursive;
   margin-top: 10%;
   text-align: center;
-  font-size: 2.8em;
+  font-size: 4em;
   color: white;
 }
 
 h2 {
   margin-top: 25%;
+  margin: 0 auto;
+  width: 77%;
   text-align: center;
   font-size: 1.2em;
   color: white;
-  font-family: 'Indie Flower', cursive;
+  font-family: 'Poppins', sans-serif;
 }
 
 h3 {
@@ -38,11 +40,12 @@ nav {
 }
 
 .navLi {
-  margin-left:1em;
+  /* margin-left:1em; */
 }
 
 .navA {
-  margin-left:1em;
+  margin-left: 0.5em;
+  font-size: 0.8em;
   color: white;
   text-decoration: none;
 }
