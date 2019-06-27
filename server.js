@@ -99,7 +99,7 @@ function renderSearchPage(request, response) {
   return superagent.get(URL)
     .set('Authorization', `Bearer ${request.token}`)
     .then(apiResponse => {
-      console.log(apiResponse.body.animals)
+      // console.log(apiResponse.body.animals)
       const petInstances = apiResponse.body.animals
         // .filter(petData => {
         //   if (petData.name.includes('adopted') || petData.name.includes('adoption')){
@@ -114,6 +114,10 @@ function renderSearchPage(request, response) {
     .catch(error => handleError(error));
 }
 
+
+
+// he.decode('+++ REQUIRES ANOTHER DOG IN THE HOME ++&amp;#10;&amp;#10;NAME: MICHELLE FAIRLEY&amp;#10;AGE/GENDER: DOB 9.6.18, Female&amp;#10;BREED: JINDO MIX&amp;#10;TEMPERAMENT: Playful and mischievous&amp;#10;WEIGHT: 35 lbs&amp;#10;&amp;#10;HOUSE...')
+
 function Pet(query){
   // this.search_query = query;
   this.type = query.type;
@@ -124,7 +128,7 @@ function Pet(query){
   this.size = query.size;
   this.city = query.contact.address.city;
   this.state = query.contact.address.state;
-  this.description = query.description;
+  this.description = query.description.replace(/(& #39;|&#039;|&#39;)/gm, '\'').replace(/&quot;/gm, '"').replace(/&amp;/gm, ' & ').replace(/#10;/gm, '');
   console.log(this.description)
   this.type = query.type;
   this.url = query.url;
