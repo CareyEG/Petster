@@ -18,7 +18,7 @@ input {
 }
 
 /* Button */
-#submit, .dropdown, #adopt-button, .about-us-names {
+#submit, .dropdown, #adopt-button, .about-us-names, .adopt-me-button {
  background-color: #2F3A70;
   color: white;
   padding: .5em;
@@ -300,6 +300,9 @@ hr {
   margin-bottom: 5%;
 }
 
+.adopt-me-button {
+  margin: 5%;
+}
 /* //////////////////////////// */
 /* //////////Details////////// */
 /* //////////////////////////// */
