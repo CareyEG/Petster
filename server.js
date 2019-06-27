@@ -51,12 +51,12 @@ app.set('view engine', 'ejs');
 
 app.get('/', getToken, renderHomepage);
 app.get('/search', getToken, renderSearchPage);
-// app.get('/favorites', getToken, renderFavoritesPage);
 app.get('/details', renderDetailsPage);
 app.get('/aboutUs', renderAboutUsPage);
 app.post('/favorites', saveFavorite);
 app.post('/details', showDetail)
 app.get('/favorites', renderSavedPets);
+app.delete('/favorites/:id', deleteFavorite);
 
 // Helper Functions:
 
@@ -82,7 +82,7 @@ function renderSearchPage(request, response) {
   let queryName = request.query.firstName;
 
 
-  let URL = `https://api.petfinder.com/v2/animals?type=${queryType}&location=${queryZipCode}&distance=${queryDistance}&limit=100&sort=random`
+  let URL = `https://api.petfinder.com/v2/animals?type=${queryType}&location=${queryZipCode}&distance=${queryDistance}&limit=100&sort=random&status=adoptable`
 
 
 
@@ -108,13 +108,27 @@ function Pet(query){
   this.state = query.contact.address.state;
   this.description = query.description;
   this.type = query.type;
+  this.url = query.url;
+  this.photos = [];
+  // console.log(query.photos.length)
+  if(query.photos.length){
+    // console.log('hey')
+    for (let i = 0; i < query.photos.length; i++){
+      // console.log(`hi, ${i}`)
+      // console.log(query.photos[i].large)
+      this.photos.push(query.photos[i].large);
+      // this.photo[i] = query.photos[i].large;
+    }
+  }
+  // console.log(this.photos);
   this.photo = query.photos.length ? query.photos[0].large : 'http://www.placecage.com/200/200';
+  console.log('PHOTo', this.photo);
 }
 
 function saveFavorite(request, response){
   // response.send(request.body);
   let { type, name, age, gender, size, city, state, description, photo } = request.body;
-  console.log('request.body', request.body)
+  // console.log('request.body', request.body)
   // console.log('request.body at 0', request[0].body)
 
   const SQL = `INSERT INTO favorites (type, name, age, gender, size, city, state, description, photo) VALUES('${type}','${name}', '${age}', '${gender}', '${size}','${city}', '${state}', '${description}', '${photo}') RETURNING id;`;
@@ -126,19 +140,6 @@ function saveFavorite(request, response){
     .catch(error => handleError(error, response));
 }
 
-// function renderFavoritesPage(request, response) {
-//   let URL = 'https://api.petfinder.com/v2/animals'
-//   return superagent.get(URL)
-//     .set('Authorization', `Bearer ${request.token}`)
-//     .then(apiResponse => {
-//       const petInstances = apiResponse.body.animals
-//         .filter(petObject => petObject.type === 'Cat')
-//         .map(cat => new Pet (cat))
-//       response.render('pages/favorites', { petResultAPI: petInstances });
-//     })
-//     .catch(error => handleError(error));
-// }
-
 function renderSavedPets(request, response) {
   let SQL = `SELECT * FROM favorites`;
 
@@ -148,6 +149,15 @@ function renderSavedPets(request, response) {
       // response.render('pages/favorites', {results: results.rows})
     })
     .catch(error => handleError(error, response));
+}
+
+function deleteFavorite(request, response) {
+  let SQL = 'DELETE FROM favorites WHERE id=$1;';
+  let values = [request.params.id];
+
+  return client.query(SQL, values)
+    .then(() => response.redirect('/favorites'))
+    .catch(err => handleError(err, response));
 }
 
 function renderDetailsPage(request, response) {
