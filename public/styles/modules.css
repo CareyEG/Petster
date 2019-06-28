@@ -220,6 +220,7 @@ select {
     padding: .5em;
     line-height: 1.5em;
     font-size: 1em;
+    margin-bottom: 4%;
   }
 
   /* .searchButtons {
@@ -344,7 +345,7 @@ hr {
 }
 
 .adopt-me-button {
-  margin: 8%;
+  margin-left: 28%;
   padding-left: 10%;
   padding-right: 10%;
 }
