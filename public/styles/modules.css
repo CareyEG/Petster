@@ -354,6 +354,14 @@ hr {
   padding-right: 10%;
 }
 
+#button-wrap {
+  display: flex;
+}
+
+#fav-pet-info{
+  display: flex;
+  flex-direction: column;
+}
 
 /* //////////////////////////// */
 /* //////////About Us////////// */
