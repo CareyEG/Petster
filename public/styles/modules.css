@@ -350,8 +350,9 @@ hr {
 
 .adopt-me-button {
   margin: 8%;
-  padding-left: 10%;
-  padding-right: 10%;
+  padding-left: 5%;
+  padding-right: 5%;
+  text-align: center;
 }
 
 #button-wrap {

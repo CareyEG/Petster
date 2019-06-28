@@ -54,7 +54,6 @@ app.get('/search', getToken, renderSearchPage);
 app.get('/details/:id', renderDetailsPageFromFav);
 app.get('/aboutUs', renderAboutUsPage);
 app.post('/favorites', saveFavorite);
-app.post('/details', showDetailFromSearch)
 app.get('/favorites', renderSavedPets);
 app.delete('/favorites/:id', deleteFavorite);
 
@@ -70,13 +69,6 @@ function renderDetailsPageFromFav(request, response) {
       response.render('pages/details', {petDetailsResponse: results.rows[0]})
     })
     .catch(err => handleError(err, response));
-}
-
-function showDetailFromSearch(request, response) {
-  const detailsResponse = request.body;
-  // response.send(request.body);
-  // response.render('pages/details');
-  response.render('pages/details', { petDetailsResponse: detailsResponse });
 }
 
 function renderHomepage(request, response) {
