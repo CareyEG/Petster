@@ -7,6 +7,7 @@
 <ul>
     <% renderFavorites.forEach(item => { %>
     <div class="favorite-pets">
+        <li class="favorite-pets-name"><h4><%= item.name %></h4></li>
         <li><img class="favorite-img" src="<%=item.photo%>"></li>
         <!-- <li class="favorite-pets-age"><h5><%= item.age %></h5></li> -->
         <!-- <li class="favorite-pets-description"><h4><%= item.description %></h4></li> -->
@@ -26,8 +27,6 @@
       </div>
 
       <div id="fav-pet-info">
-          <li class="favorite-pets-name"><h4><%= item.name %></h4></li>
-
           <a class="adopt-me-button" href="<%= item.url %>">Adopt Me!</a>
       </div>
         
