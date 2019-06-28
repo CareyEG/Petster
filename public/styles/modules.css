@@ -198,18 +198,28 @@ select {
   }
 
   .heart {
-    position: fixed;
-    bottom: 1%;
+    position: absolute;
+    bottom: -11%;
     margin-left: 70%;
 }
 
-  #view-name {
-    font-size: 1.5em;
+.petDescription {
+  text-align: center;
+  font-size: 1.5em;
+}
+
+  .view-name {
+    font-size: 1em;
     margin-bottom: .5em;
     text-align: center;
   }
+
+  #petName {
+    font-size: 2.5em;
+    font-weight: bolder;
+  }
   
-  #view-description {
+  .view-description {
     padding: .5em;
     line-height: 1.5em;
     font-size: 1em;
@@ -230,7 +240,7 @@ select {
 
   #btnSave {
     margin-top: 3%;
-    margin-left: 30%;
+    margin-left: 80%;
   }
 
   /* #btnSave:hover {

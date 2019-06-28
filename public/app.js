@@ -1,15 +1,14 @@
 
 // handles details click on search page
-$('.btnDetails').on('click', function(){
+$('.detailsButton').on('click', function(){
   console.log('you clicked!')
   $('.view-details').show();
-  $('.btnDetails').hide();
+  $('.detailsButton').hide();
+  $("html, body").animate({ scrollTop: $(document).height() }, "slow");
 });
 
 
-$('#go-back-search').on('click', function(){
-  console.log('you clicked the back search!');
-});
+
 
 
 let count = 0;
