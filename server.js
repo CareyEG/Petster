@@ -128,7 +128,7 @@ function Pet(query){
   this.size = query.size;
   this.city = query.contact.address.city;
   this.state = query.contact.address.state;
-  this.description = query.description.replace(/(& #39;|&#039;|&#39;)/gm, '\'').replace(/&quot;/gm, '"').replace(/&amp;/gm, ' & ').replace(/#10;/gm, '');
+  this.description = query.description ? query.description.replace(/(& #39;|&#039;|&#39;)/gm, '\'').replace(/&quot;/gm, '"').replace(/&amp;/gm, ' & ').replace(/#10;/gm, '') : query.description;
   console.log(this.description)
   this.type = query.type;
   this.url = query.url;
