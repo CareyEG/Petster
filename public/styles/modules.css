@@ -18,7 +18,7 @@ input {
 }
 
 /* Button */
-#submit, .dropdown, #delete-button, #adopt-button, .about-us-names {
+#submit, .dropdown, #adopt-button, .about-us-names, .adopt-me-button {
  background-color: #2F3A70;
   color: white;
   padding: .5em;
@@ -31,7 +31,7 @@ input {
   /* text-decoration: none; */
 }
 
-#submit:hover{
+#submit:hover, #submit:focus #submit:active {
   background-color: #D9D9D9;
   color: #2F3A70;
   font-weight: bold;
@@ -43,11 +43,11 @@ input {
   font-weight: bold;
 } */
 
-#delete-button:hover {
+/* #delete-button:hover {
   background-color: #D9D9D9;
   color: #2F3A70;
   font-weight: bold;
-}
+} */
 
 
 /* Dropdown Button */
@@ -301,17 +301,20 @@ select {
   display: flex;
 } 
 
-#delete-button {
-  /* width: 14em; */
-  /* margin: 0 auto; */
+/* #delete-button {
+  width: 14em;
+  margin: 0 auto;
   margin-top: 7%;
-}
+} */
 
 hr {
   margin-top: 5%;
   margin-bottom: 5%;
 }
 
+.adopt-me-button {
+  margin: 5%;
+}
 /* //////////////////////////// */
 /* //////////Details////////// */
 /* //////////////////////////// */
@@ -345,8 +348,10 @@ hr {
   margin: 0;
 }
 
-#adopt-button {
+.adopt-me-button {
   margin: 8%;
+  padding-left: 10%;
+  padding-right: 10%;
 }
 
 
