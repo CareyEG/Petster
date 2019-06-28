@@ -201,7 +201,7 @@ select {
 
 .petDescription {
   text-align: center;
-  font-size: 1.5em;
+  font-size: 1.2em;
 }
 
   .view-name {
@@ -211,8 +211,11 @@ select {
   }
 
   #petName {
-    font-size: 2.5em;
+    font-size: 2em;
     font-weight: bolder;
+    max-width: 50%;
+    text-align: center;
+    margin: 0 auto;
 
   }
   
@@ -308,7 +311,12 @@ hr {
 }
 
 .adopt-me-button {
-  margin: 5%;
+  margin: 15%;
+}
+
+
+#adopt-me-search {
+  margin-left: 2em;
 }
 /* //////////////////////////// */
 /* //////////Details////////// */
@@ -422,4 +430,6 @@ a:hover {
   padding-top: 2em;
   padding-bottom: 2em;
   box-shadow: 7px 7px 7px 0px rgba(0,0,0,0.50);
+
+}
 

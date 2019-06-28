@@ -4,6 +4,7 @@ $('.detailsButton').on('click', function(){
   console.log('you clicked!')
   $('.view-details').show();
   $('.detailsButton').hide();
+  $('.heart-icon-hide').hide();
   $("html, body").animate({ scrollTop: $(document).height() }, "slow");
 });
 
@@ -17,6 +18,7 @@ $(`.${count}`).show();
 // submits the pet details form on heart click
 $('.heart').on('click', event => {
   $('.heart').toggleClass('image-fade');
+  // setTimeout(() => $('.heart').toggleClass('image-fade'), 500)
   console.log(' you clicked the submit!')
   $(`.${count}Form`).submit();
 })
