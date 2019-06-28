@@ -23,7 +23,8 @@ client.query(`SELECT * FROM favorites`)
     city VARCHAR(255),
     state VARCHAR(255),
     description TEXT,
-    photo VARCHAR(255)
+    photo VARCHAR(255),
+    url TEXT
   );`))
 client.on('err', err => console.error(err));
 
@@ -143,11 +144,11 @@ function Pet(query){
 
 function saveFavorite(request, response){
   // response.send(request.body);
-  let { type, name, age, gender, size, city, state, description, photo } = request.body;
+  let { type, name, age, gender, size, city, state, description, photo, url } = request.body;
   // console.log('request.body', request.body)
   // console.log('request.body at 0', request[0].body)
 
-  const SQL = `INSERT INTO favorites (type, name, age, gender, size, city, state, description, photo) VALUES('${type}','${name}', '${age}', '${gender}', '${size}','${city}', '${state}', '${description}', '${photo}') RETURNING id;`;
+  const SQL = `INSERT INTO favorites (type, name, age, gender, size, city, state, description, photo, url) VALUES('${type}','${name}', '${age}', '${gender}', '${size}','${city}', '${state}', '${description}', '${photo}', '${url}') RETURNING id;`;
 
   return client.query(SQL)
     .then(sqlResults => { //console.log('hello')
