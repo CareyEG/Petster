@@ -23,7 +23,11 @@
 
 <p id="petInfo"><%= petDetailsResponse.description %></p>
 
-<a class="adopt-me-button" href="<%= petDetailsResponse.url %>">Adopt me!</a>
+<div id="fav-pet-info">
+    <a class="adopt-me-button" href="<%= petDetailsResponse.url %>">Adopt Me!</a>
+</div>
+
+
 <% console.log(petDetailsResponse.url) %>
 <!-- <p><img id=map src="https://via.placeholder.com/150">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus imperdiet, nulla et dictum interdum, nisi lorem egestas odio, vitae scelerisque enim ligula venenatis dolor. Maecenas nisl est, ultrices nec congue eget, auctor vitae massa. Fusce luctus vestibulum augue ut aliquet. </p> -->
 
