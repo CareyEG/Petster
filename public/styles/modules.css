@@ -240,7 +240,7 @@ select {
   } */
 
   #btnSave {
-    margin-top: 2%;
+    margin-top: 5%;
     margin-left: 80%;
   }
 
@@ -351,24 +351,12 @@ hr {
 }
 
 .adopt-me-button {
-<<<<<<< HEAD
-<<<<<<< HEAD
-  margin-left: 28%;
-  padding-left: 10%;
-  padding-right: 10%;
-=======
-=======
->>>>>>> fb07b679135509055beee09742fed5c2a976c6af
   margin: 8%;
   padding: .8em;
   /* padding-left: 5%;
   padding-right: 5%; */
   text-align: center;
-<<<<<<< HEAD
->>>>>>> 2d31466cdd089104ec93575798989c37fb10162f
 }
-=======
->>>>>>> fb07b679135509055beee09742fed5c2a976c6af
 
 #button-wrap {
   display: flex;
