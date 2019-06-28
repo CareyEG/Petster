@@ -12,6 +12,7 @@
 
 <!-- <hr width="60%"> -->
 
+<<<<<<< HEAD
 <div class="view-details"></div>
   <img id="details-pet-image" src="<%= petDetailsResponse.photo %>">
   <h4 id="petName" class="view-name"><%= petDetailsResponse.name %></h4>
@@ -26,7 +27,21 @@
   <p class="petDescription">Description</p>
   <h4 class="view-description"><%= petDetailsResponse.description %></h4>
 </div>
+=======
+<img id="details-pet-image" src="<%= petDetailsResponse.photo %>">
+<h2><%= petDetailsResponse.name %></h2>
+<h4>Age: <%= petDetailsResponse.age %></h4>
+
+<h4>Gender: <%= petDetailsResponse.gender %></h4>
+<h4>Size: <%= petDetailsResponse.size %></h4>
+<!-- <h4>Primary breed: <%= petDetailsResponse.primaryBreed %></h4> -->
+<h4>Location: <%= petDetailsResponse.city %>, <%= petDetailsResponse.state %></h4>
+
+<p id="petInfo"><%= petDetailsResponse.description %></p>
+
+>>>>>>> 2d31466cdd089104ec93575798989c37fb10162f
 <a class="adopt-me-button" href="<%= petDetailsResponse.url %>">Adopt me!</a>
+<% console.log(petDetailsResponse.url) %>
 <!-- <p><img id=map src="https://via.placeholder.com/150">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus imperdiet, nulla et dictum interdum, nisi lorem egestas odio, vitae scelerisque enim ligula venenatis dolor. Maecenas nisl est, ultrices nec congue eget, auctor vitae massa. Fusce luctus vestibulum augue ut aliquet. </p> -->
 
 </div>

@@ -31,12 +31,6 @@ https://fontawesome.com/license
 ## Getting Started
 A user will need to have a link to our deployed site. 
 
-## Architecture
-TBA
-
-## Change Log
-TBA
-
 ## Built With
 
 * [Visual Studio Code](https://code.visualstudio.com/) - The code editor.
@@ -48,4 +42,4 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 ## Acknowledgments
 
-TBA
+Thank you to our incredible 301 instructors: JB Tellez, Hannah Ingham, Ryan Gallaway, Jacob Knaack, and to everyone at 301d48!
