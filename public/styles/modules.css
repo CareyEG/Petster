@@ -195,7 +195,7 @@ select {
 
   .heart {
     position: absolute;
-    bottom: -11%;
+    bottom: -13%;
     margin-left: 70%;
 }
 
@@ -237,7 +237,7 @@ select {
   } */
 
   #btnSave {
-    margin-top: 3%;
+    margin-top: 2%;
     margin-left: 80%;
   }
 
@@ -283,7 +283,6 @@ select {
 .favorite-pets img{
   width: 600px;
   max-width: 90%;
-  /* max-height:50%; */
   margin: 6% 0;
   display: block;
   margin-left: auto;
@@ -329,7 +328,6 @@ hr {
 #details-pet-image {
   width: 600px;
   max-width: 90%;
-  /* max-height:50%; */
   margin: 10% 0;
   display: block;
   margin-left: auto;
@@ -345,11 +343,20 @@ hr {
 }
 
 .adopt-me-button {
-  margin-left: 28%;
-  padding-left: 10%;
-  padding-right: 10%;
+  margin: 8%;
+  padding: .8em;
+  /* padding-left: 5%;
+  padding-right: 5%; */
+  text-align: center;
+
+#button-wrap {
+  display: flex;
 }
 
+#fav-pet-info{
+  display: flex;
+  flex-direction: column;
+}
 
 /* //////////////////////////// */
 /* //////////About Us////////// */
@@ -376,16 +383,6 @@ hr {
   width: 50%;
   margin-bottom: 5%;
 }
-
-/* hr { 
-  display: block;
-  margin-top: 0.5em;
-  margin-bottom: 0.5em;
-  margin-left: auto;
-  margin-right: auto;
-  border-style: inset;
-  border-width: 1px;
-}  */
 
 .favoriteImg {
   border-radius: 5px;

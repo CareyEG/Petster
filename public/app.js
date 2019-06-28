@@ -21,6 +21,12 @@ $('.heart').on('click', event => {
   $(`.${count}Form`).submit();
 })
 
+$('delete-icon-class').on('click', event => {
+ 
+  console.log(' you clicked the delete button')
+  $(`.${count}Form`).submit();
+})
+
 // credit: https://stackoverflow.com/questions/15685708/determining-if-mouse-click-happened-in-left-or-right-half-of-div
 
 // handles left and right click on img
