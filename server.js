@@ -23,7 +23,8 @@ client.query(`SELECT * FROM favorites`)
     city VARCHAR(255),
     state VARCHAR(255),
     description TEXT,
-    photo VARCHAR(255)
+    photo VARCHAR(255),
+    url TEXT
   );`))
 client.on('err', err => console.error(err));
 
@@ -51,22 +52,24 @@ app.set('view engine', 'ejs');
 
 app.get('/', getToken, renderHomepage);
 app.get('/search', getToken, renderSearchPage);
-app.get('/details', renderDetailsPage);
+app.get('/details/:id', renderDetailsPageFromFav);
 app.get('/aboutUs', renderAboutUsPage);
 app.post('/favorites', saveFavorite);
-app.post('/details', showDetail)
 app.get('/favorites', renderSavedPets);
 app.delete('/favorites/:id', deleteFavorite);
 
 // Helper Functions:
 
-
-function showDetail(request, response) {
-  const detailsResponse = request.body;
-  // response.send(request.body);
-  // response.render('pages/details');
-  response.render('pages/details', { petDetailsResponse: detailsResponse });
-  
+function renderDetailsPageFromFav(request, response) {
+  let SQL = 'SELECT * FROM favorites WHERE id=$1;';
+  let values = [request.params.id];
+  console.log('rendering details', values[0]);
+  return client.query(SQL, values)
+    .then(results => {
+      console.log(results);
+      response.render('pages/details', {petDetailsResponse: results.rows[0]})
+    })
+    .catch(err => handleError(err, response));
 }
 
 function renderHomepage(request, response) {
@@ -89,12 +92,24 @@ function renderSearchPage(request, response) {
   return superagent.get(URL)
     .set('Authorization', `Bearer ${request.token}`)
     .then(apiResponse => {
+      // console.log(apiResponse.body.animals)
       const petInstances = apiResponse.body.animals
+        // .filter(petData => {
+        //   if (petData.name.includes('adopted') || petData.name.includes('adoption')){
+        //     return false;
+        //   } else {
+        //     return true;
+        //   }
+        // })
         .map(pet => new Pet (pet))
       response.render('pages/search', { petResultAPI: petInstances });
     })
     .catch(error => handleError(error));
 }
+
+
+
+// he.decode('+++ REQUIRES ANOTHER DOG IN THE HOME ++&amp;#10;&amp;#10;NAME: MICHELLE FAIRLEY&amp;#10;AGE/GENDER: DOB 9.6.18, Female&amp;#10;BREED: JINDO MIX&amp;#10;TEMPERAMENT: Playful and mischievous&amp;#10;WEIGHT: 35 lbs&amp;#10;&amp;#10;HOUSE...')
 
 function Pet(query){
   // this.search_query = query;
@@ -106,9 +121,12 @@ function Pet(query){
   this.size = query.size;
   this.city = query.contact.address.city;
   this.state = query.contact.address.state;
-  this.description = query.description;
+  this.description = query.description ? query.description.replace(/(& #39|& #39;|&#039;|&#39;)/gm, '\'').replace(/&quot;/gm, '"').replace(/&amp;/gm, ' & ').replace(/#10;/gm, '') : query.description;
+  console.log(this.description)
   this.type = query.type;
   this.url = query.url;
+  this.primaryBreed = query.breeds.primary;
+  this.secondaryBreed = query.breeds.secondary;
   this.photos = [];
   // console.log(query.photos.length)
   if(query.photos.length){
@@ -122,16 +140,15 @@ function Pet(query){
   }
   // console.log(this.photos);
   this.photo = query.photos.length ? query.photos[0].large : 'http://www.placecage.com/200/200';
-  console.log('PHOTo', this.photo);
 }
 
 function saveFavorite(request, response){
   // response.send(request.body);
-  let { type, name, age, gender, size, city, state, description, photo } = request.body;
+  let { type, name, age, gender, size, city, state, description, photo, url } = request.body;
   // console.log('request.body', request.body)
   // console.log('request.body at 0', request[0].body)
 
-  const SQL = `INSERT INTO favorites (type, name, age, gender, size, city, state, description, photo) VALUES('${type}','${name}', '${age}', '${gender}', '${size}','${city}', '${state}', '${description}', '${photo}') RETURNING id;`;
+  const SQL = `INSERT INTO favorites (type, name, age, gender, size, city, state, description, photo, url) VALUES('${type}','${name}', '${age}', '${gender}', '${size}','${city}', '${state}', '${description}', '${photo}', '${url}') RETURNING id;`;
 
   return client.query(SQL)
     .then(sqlResults => { //console.log('hello')
@@ -158,10 +175,6 @@ function deleteFavorite(request, response) {
   return client.query(SQL, values)
     .then(() => response.redirect('/favorites'))
     .catch(err => handleError(err, response));
-}
-
-function renderDetailsPage(request, response) {
-  response.render('pages/details');
 }
 
 function renderAboutUsPage(request, response) {

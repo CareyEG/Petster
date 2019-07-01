@@ -16,6 +16,8 @@ font-family: 'Lobster', cursive;
 
 Icons made by <a href="https://www.flaticon.com/authors/smashicons" title="Smashicons">Smashicons</a> from <a href="https://www.flaticon.com/"                 title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/"                 title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a>
 
+https://fontawesome.com/license
+
 ## Authors
 
 * **Lillian Gales** - [GitHub Profile](https://github.com/lillielise)
@@ -29,12 +31,6 @@ Icons made by <a href="https://www.flaticon.com/authors/smashicons" title="Smash
 ## Getting Started
 A user will need to have a link to our deployed site. 
 
-## Architecture
-TBA
-
-## Change Log
-TBA
-
 ## Built With
 
 * [Visual Studio Code](https://code.visualstudio.com/) - The code editor.
@@ -46,4 +42,4 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 ## Acknowledgments
 
-TBA
+Thank you to our incredible 301 instructors: JB Tellez, Hannah Ingham, Ryan Gallaway, Jacob Knaack, and to everyone at 301d48!
