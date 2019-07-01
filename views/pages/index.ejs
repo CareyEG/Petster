@@ -10,13 +10,13 @@
       <form id="user-form" action="/search" method="GET">
       <select class="dropdown" name="type" id="pet-type-dropdown">
         <!-- change back to default - using dog for testing -->
-        <option class="dropbtn" name="Dog" value="Dog">Dog</option>
+        <option class="dropbtn" name="Dog" value="Dog">Type of pet</option>
         <option name="Dog" value="Dog">Dog</option>
         <option name="Cat" value="Cat">Cat</option>
         <option name="Rabbit" value="Rabbit">Rabbit</option>
       </select>
 
-      <input type="number" name="city" placeholder="Enter Your Zip Code" value="98103">
+      <input type="number" name="city" placeholder="Enter Your Zip Code">
       
       <select class="dropdown" name="travelDistance" id="travel-distance-dropdown">
         <option name="15-miles" value="15" class="dropbtn" >Distance from my location</option>
@@ -25,7 +25,7 @@
         <option name="25+-miles" value="25">25 miles</option>
       </select>
 
-        <input type="text" name="firstName" placeholder="Enter Your Username Here" value="lillie">
+        <input type="text" name="firstName" placeholder="Enter Your Username Here">
 
       <button id="submit" onclick="window.location.href='/search'">Submit</button>
     </form>
