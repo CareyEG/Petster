@@ -8,17 +8,21 @@
     /* margin: 3%; */
 }
 
-#info-icon {
-    width: 71%;
-}
 
 #info-icon-fav {
     width: 31%;
     /* margin: 3%; */
 }
 
-#heart-icon {
-    width: 40px;
-    margin: 3%;
-    margin-left: 5%;
+
+.heart-icon {
+    margin-left: 10%;
+    float: left;
+    width: 10%;
+}
+
+.info-icon {
+    margin-right: 10%;
+    float: right;
+    width: 10%;
 }

@@ -1,9 +1,9 @@
 
 // handles details click on search page
-$('.detailsButton').on('click', function(){
+$('.info-icon').on('click', function(){
   console.log('you clicked!')
   $('.view-details').show();
-  $('.detailsButton').hide();
+  $('.info-icon').hide();
   $('.heart-icon-hide').hide();
   $("html, body").animate({ scrollTop: $(document).height() }, "slow");
 });
@@ -16,9 +16,11 @@ let count = 0;
 $(`.${count}`).show();
 
 // submits the pet details form on heart click
-$('.heart').on('click', event => {
-  $('.heart').toggleClass('image-fade');
-  // setTimeout(() => $('.heart').toggleClass('image-fade'), 500)
+$('.heart-icon').on('click', event => {
+  $('.heart-icon').toggleClass('image-fade');
+  // $('.heart-icon > path').attr('fill', 'red' );
+
+  setTimeout(() => $('.heart-icon > path').attr('fill', 'red' ), 800)
   console.log(' you clicked the submit!')
   $(`.${count}Form`).submit();
 })
@@ -28,6 +30,8 @@ $('delete-icon-class').on('click', event => {
   console.log(' you clicked the delete button')
   $(`.${count}Form`).submit();
 })
+
+
 
 // credit: https://stackoverflow.com/questions/15685708/determining-if-mouse-click-happened-in-left-or-right-half-of-div
 
