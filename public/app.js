@@ -9,18 +9,13 @@ $('.info-icon').on('click', function(){
 });
 
 
-
-
-
 let count = 0;
 $(`.${count}`).show();
 
 // submits the pet details form on heart click
 $('.heart-icon').on('click', event => {
-  $('.heart-icon').toggleClass('image-fade');
-  // $('.heart-icon > path').attr('fill', 'red' );
-
-  setTimeout(() => $('.heart-icon > path').attr('fill', 'red' ), 800)
+  $(`#heart-icon${count}`).toggleClass('image-fade');
+  setTimeout(() => $(`#heart-icon${count} > path`).attr('fill', 'red' ), 800)
   console.log(' you clicked the submit!')
   $(`.${count}Form`).submit();
 })
