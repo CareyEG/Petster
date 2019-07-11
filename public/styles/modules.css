@@ -104,7 +104,7 @@ select {
     padding: 14px 28px;
     font-size: 16px;
     cursor: pointer;
-    display: inline-block;
+    display: inline-block; 
   }
   
   /* On mouse-over */
@@ -163,15 +163,16 @@ select {
 }
 
   /* Images */
-  #save-data{
+  /* #save-data{
     position: fixed;
     bottom: 1%;
     margin-left: 74%;
-  }
+  } */
   
 .flexPet {
     height: 100%;
     margin-top: 5%;
+    margin-bottom: 5%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -193,11 +194,6 @@ select {
   }
   
 
-  .heart {
-    position: absolute;
-    bottom: -13%;
-    margin-left: 70%;
-}
 
 .petDescription {
   text-align: center;
@@ -240,6 +236,7 @@ select {
   } */
 
   #btnSave {
+    float: right;
     margin-top: 5%;
     margin-left: 80%;
   }
