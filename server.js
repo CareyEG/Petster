@@ -15,6 +15,7 @@ client.connect();
 client.query(`SELECT * FROM favorites`)
   .catch(() => client.query(`CREATE TABLE favorites (
     id SERIAL PRIMARY KEY,
+    petfinderid VARCHAR(255),
     type VARCHAR(255),
     name VARCHAR(255),
     age VARCHAR(255),
@@ -63,10 +64,10 @@ app.delete('/favorites/:id', deleteFavorite);
 function renderDetailsPageFromFav(request, response) {
   let SQL = 'SELECT * FROM favorites WHERE id=$1;';
   let values = [request.params.id];
-  console.log('rendering details', values[0]);
+  // console.log('rendering details', values[0]);
   return client.query(SQL, values)
     .then(results => {
-      console.log(results);
+      // console.log(results);
       response.render('pages/details', {petDetailsResponse: results.rows[0]})
     })
     .catch(err => handleError(err, response));
@@ -109,20 +110,19 @@ function renderSearchPage(request, response) {
 
 
 
-// he.decode('+++ REQUIRES ANOTHER DOG IN THE HOME ++&amp;#10;&amp;#10;NAME: MICHELLE FAIRLEY&amp;#10;AGE/GENDER: DOB 9.6.18, Female&amp;#10;BREED: JINDO MIX&amp;#10;TEMPERAMENT: Playful and mischievous&amp;#10;WEIGHT: 35 lbs&amp;#10;&amp;#10;HOUSE...')
 
 function Pet(query){
-  // this.search_query = query;
+
   this.type = query.type;
-  this.id = query.id;
+  this.petfinderid = query.id;
+  // console.log('THIS IS THE PETFINDER ID',this.petfinderid)
   this.name = query.name;
   this.age = query.age;
   this.gender = query.gender;
   this.size = query.size;
   this.city = query.contact.address.city;
   this.state = query.contact.address.state;
-  this.description = query.description ? query.description.replace(/(& #39|& #39;|&#039;|&#39;)/gm, '\'').replace(/&quot;/gm, '"').replace(/&amp;/gm, ' & ').replace(/#10;/gm, '') : query.description;
-  console.log(this.description)
+  this.description = query.description ? query.description.replace(/(& #39|& #39;|&#039;|&#39;)/gm, '\'').replace(/(&quot;|& quot;)/gm, '"').replace(/&amp;/gm, ' & ').replace(/#10;/gm, '').replace(/& quot/gm, '') : query.description;
   this.type = query.type;
   this.url = query.url;
   this.primaryBreed = query.breeds.primary;
@@ -143,12 +143,16 @@ function Pet(query){
 }
 
 function saveFavorite(request, response){
-  // response.send(request.body);
-  let { type, name, age, gender, size, city, state, description, photo, url } = request.body;
-  // console.log('request.body', request.body)
-  // console.log('request.body at 0', request[0].body)
 
-  const SQL = `INSERT INTO favorites (type, name, age, gender, size, city, state, description, photo, url) VALUES('${type}','${name}', '${age}', '${gender}', '${size}','${city}', '${state}', '${description}', '${photo}', '${url}') RETURNING id;`;
+
+  let { petfinderid, type, name, age, gender, size, city, state, description, photo, url } = request.body;
+  console.log('Petfinder ID!', petfinderid);
+
+  const SQL = `
+  INSERT INTO favorites (petfinderid, type, name, age, gender, size, city, state, description, photo, url) SELECT '${petfinderid}','${type}','${name}', '${age}', '${gender}', '${size}','${city}', '${state}', '${description}', '${photo}', '${url}' 
+  WHERE NOT EXISTS (SELECT * FROM favorites WHERE petfinderid = '${petfinderid}')
+  RETURNING id;
+  `;
 
   return client.query(SQL)
     .then(sqlResults => { //console.log('hello')
