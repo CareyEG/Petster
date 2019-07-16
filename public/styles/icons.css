@@ -3,16 +3,19 @@
     margin: 3%;
 }
 
-#delete-icon {
-    width: 30%;
-    /* margin: 3%; */
-}
 
+
+#delete-icon  {
+    width: 20%;
+    margin-left: 20%;
+}
 
 #info-icon-fav {
-    width: 31%;
-    /* margin: 3%; */
+    width: 20%;
+    margin-right: 20%;
 }
+
+
 
 /* iPhone 6+, 7+ and 8+ */
 
